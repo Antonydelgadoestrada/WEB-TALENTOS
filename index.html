@@ -1,0 +1,586 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Casa Musical Talentos — Sullana, Piura</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,700&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<!-- ── WHATSAPP FLOTANTE ── -->
+<a class="wa-float"
+   href="https://wa.me/51962935852?text=Hola%2C%20vi%20su%20p%C3%A1gina%20web%20y%20quisiera%20m%C3%A1s%20informaci%C3%B3n%20sobre%20sus%20productos%20y%20servicios."
+   target="_blank" title="Escríbenos por WhatsApp">💬</a>
+
+<!-- ══════ NAV ══════ -->
+<nav id="navbar">
+  <div class="logo-wrap">
+    <span class="logo-main">Talentos <span>IM</span></span>
+    <span class="logo-sub">Instrument Music · Sullana, Piura</span>
+  </div>
+  <ul class="nav-links">
+    <li><a href="#inicio">Inicio</a></li>
+    <li><a href="#instrumentos">Instrumentos</a></li>
+    <li><a href="#academia">Academia</a></li>
+    <li><a href="#contacto">Contacto</a></li>
+  </ul>
+  <a class="nav-wa"
+     href="https://wa.me/51962935852?text=Hola%2C%20quisiera%20informaci%C3%B3n%20sobre%20sus%20instrumentos%20y%20clases."
+     target="_blank">💬 WhatsApp</a>
+  <div class="hamburger" onclick="toggleNav()">
+    <span></span><span></span><span></span>
+  </div>
+</nav>
+
+<!-- ══════ HERO ══════ -->
+<section id="inicio">
+  <div class="hero-bg-lines"></div>
+  <div class="hero-left">
+    <div class="hero-eyebrow">Casa Musical · Sullana, Piura</div>
+    <h1 class="hero-h1">
+      Tu pasión por<br>la música
+      <em>comienza aquí</em>
+    </h1>
+    <p class="hero-p">
+      Venta de instrumentos musicales, equipos de sonido y academia de música para todas las edades.
+      Más de dos décadas formando artistas en Sullana.
+    </p>
+    <div class="hero-btns">
+      <a href="#instrumentos" class="btn-gold">Ver Instrumentos</a>
+      <a href="#academia"     class="btn-outline">Academia →</a>
+    </div>
+    <div class="hero-info-strip">
+      <div class="info-item">
+        <span class="info-val">8+</span>
+        <span class="info-lbl">Cursos</span>
+      </div>
+      <div class="info-item">
+        <span class="info-val">500+</span>
+        <span class="info-lbl">Productos</span>
+      </div>
+      <div class="info-item">
+        <span class="info-val">L–D</span>
+        <span class="info-lbl">Abierto</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="hero-right">
+    <div class="hero-visual-center">
+      <div class="hero-glow"></div>
+      <div class="deco-ring"></div>
+      <div class="deco-ring2"></div>
+      <div class="hero-note" style="top:18%;left:12%;animation-delay:0s">♩</div>
+      <div class="hero-note" style="top:62%;right:18%;animation-delay:2.5s">♪</div>
+      <div class="hero-note" style="top:38%;right:8%;animation-delay:5s">♫</div>
+      <div class="hero-note" style="bottom:20%;left:20%;animation-delay:1.5s">♬</div>
+      <div class="guitar-wrap">
+        <svg width="260" height="440" viewBox="0 0 260 440" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <rect x="118" y="15" width="24" height="200" rx="4" fill="#120D00" stroke="#C8A84B" stroke-width="1.5"/>
+          <line x1="118" y1="50"  x2="142" y2="50"  stroke="#C8A84B" stroke-width="1.1" opacity="0.55"/>
+          <line x1="118" y1="80"  x2="142" y2="80"  stroke="#C8A84B" stroke-width="1.1" opacity="0.55"/>
+          <line x1="118" y1="110" x2="142" y2="110" stroke="#C8A84B" stroke-width="1.1" opacity="0.55"/>
+          <line x1="118" y1="140" x2="142" y2="140" stroke="#C8A84B" stroke-width="1.1" opacity="0.55"/>
+          <line x1="118" y1="168" x2="142" y2="168" stroke="#C8A84B" stroke-width="1.1" opacity="0.55"/>
+          <rect x="107" y="5" width="46" height="22" rx="5" fill="#0D0900" stroke="#C8A84B" stroke-width="1.5"/>
+          <circle cx="114" cy="11" r="3.5" fill="#C8A84B"/>
+          <circle cx="114" cy="24" r="3.5" fill="#C8A84B"/>
+          <circle cx="130" cy="8"  r="3.5" fill="#C8A84B"/>
+          <circle cx="130" cy="28" r="3.5" fill="#C8A84B"/>
+          <circle cx="146" cy="11" r="3.5" fill="#C8A84B"/>
+          <circle cx="146" cy="24" r="3.5" fill="#C8A84B"/>
+          <rect x="116" y="213" width="28" height="5" rx="1" fill="#C8A84B"/>
+          <path d="M 55 290 Q 25 330 40 375 Q 60 420 130 428 Q 200 420 220 375 Q 235 330 205 290 Q 185 268 160 272 Q 145 260 130 262 Q 115 260 100 272 Q 75 268 55 290 Z" fill="#1A1200" stroke="#C8A84B" stroke-width="2"/>
+          <path d="M 80 270 Q 55 255 60 230 Q 65 210 100 210 Q 115 205 130 207 Q 145 205 160 210 Q 195 210 200 230 Q 205 255 180 270" fill="#1A1200" stroke="#C8A84B" stroke-width="1.8"/>
+          <path d="M 75 272 Q 65 290 68 310" stroke="#C8A84B" stroke-width="1" opacity="0.4" fill="none"/>
+          <path d="M 185 272 Q 195 290 192 310" stroke="#C8A84B" stroke-width="1" opacity="0.4" fill="none"/>
+          <circle cx="130" cy="335" r="32" fill="#0A0700" stroke="#C8A84B" stroke-width="1.5"/>
+          <circle cx="130" cy="335" r="25" fill="#0A0700" stroke="#C8A84B" stroke-width=".7" opacity="0.45"/>
+          <circle cx="130" cy="335" r="29" fill="none" stroke="#C8A84B" stroke-width=".5" stroke-dasharray="4 3" opacity="0.3"/>
+          <rect x="105" y="375" width="50" height="9" rx="2" fill="#C8A84B" opacity="0.85"/>
+          <line x1="122" y1="25" x2="113" y2="384" stroke="#C8A84B" stroke-width=".7" opacity="0.45"/>
+          <line x1="126" y1="25" x2="120" y2="384" stroke="#C8A84B" stroke-width=".7" opacity="0.45"/>
+          <line x1="130" y1="25" x2="127" y2="384" stroke="#C8A84B" stroke-width=".9" opacity="0.45"/>
+          <line x1="134" y1="25" x2="134" y2="384" stroke="#C8A84B" stroke-width=".9" opacity="0.45"/>
+          <line x1="138" y1="25" x2="141" y2="384" stroke="#C8A84B" stroke-width=".7" opacity="0.45"/>
+          <line x1="142" y1="25" x2="148" y2="384" stroke="#C8A84B" stroke-width=".7" opacity="0.45"/>
+        </svg>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════ MARQUEE ══════ -->
+<div class="marquee-bar">
+  <div class="marquee-track">
+    <span class="m-item">Guitarras<span class="m-dot"></span></span>
+    <span class="m-item">Baterías<span class="m-dot"></span></span>
+    <span class="m-item">Pianos & Teclados<span class="m-dot"></span></span>
+    <span class="m-item">Bajos<span class="m-dot"></span></span>
+    <span class="m-item">Vientos<span class="m-dot"></span></span>
+    <span class="m-item">Parlantes<span class="m-dot"></span></span>
+    <span class="m-item">Consolas<span class="m-dot"></span></span>
+    <span class="m-item">Tambores<span class="m-dot"></span></span>
+    <span class="m-item">Accesorios<span class="m-dot"></span></span>
+    <span class="m-item">Academia Musical<span class="m-dot"></span></span>
+    <!-- Duplicado para el loop infinito -->
+    <span class="m-item">Guitarras<span class="m-dot"></span></span>
+    <span class="m-item">Baterías<span class="m-dot"></span></span>
+    <span class="m-item">Pianos & Teclados<span class="m-dot"></span></span>
+    <span class="m-item">Bajos<span class="m-dot"></span></span>
+    <span class="m-item">Vientos<span class="m-dot"></span></span>
+    <span class="m-item">Parlantes<span class="m-dot"></span></span>
+    <span class="m-item">Consolas<span class="m-dot"></span></span>
+    <span class="m-item">Tambores<span class="m-dot"></span></span>
+    <span class="m-item">Accesorios<span class="m-dot"></span></span>
+    <span class="m-item">Academia Musical<span class="m-dot"></span></span>
+  </div>
+</div>
+
+<!-- ══════ INSTRUMENTOS ══════ -->
+<section id="instrumentos">
+  <div class="reveal">
+    <div class="sec-tag">Catálogo</div>
+    <h2 class="sec-h2">Nuestros <em>Instrumentos</em></h2>
+    <p class="sec-sub">Encuentra el instrumento perfecto para ti. Todos los precios están en Soles (S/.). Consulta disponibilidad directamente por WhatsApp.</p>
+  </div>
+
+  <div class="filters reveal">
+    <button class="ftab on"  onclick="filtrar(this,'todos')">Todos</button>
+    <button class="ftab"     onclick="filtrar(this,'guitarra')">Guitarras</button>
+    <button class="ftab"     onclick="filtrar(this,'bateria')">Baterías</button>
+    <button class="ftab"     onclick="filtrar(this,'teclado')">Pianos/Teclados</button>
+    <button class="ftab"     onclick="filtrar(this,'viento')">Vientos</button>
+    <button class="ftab"     onclick="filtrar(this,'sonido')">Sonido/Consolas</button>
+    <button class="ftab"     onclick="filtrar(this,'accesorios')">Accesorios</button>
+  </div>
+
+  <!-- ════════════════════════════════════════════════════
+       PRODUCTOS — EDITA AQUÍ NOMBRE, DESCRIPCIÓN Y PRECIO
+       · Cambia el emoji del .prod-img
+       · Cambia el texto de .prod-name y .prod-desc
+       · Cambia el precio en .prod-price
+       · Copia un bloque completo para agregar más productos
+       · Cambia data-cat="guitarra|bateria|teclado|viento|sonido|accesorios"
+  ════════════════════════════════════════════════════ -->
+  <div class="prod-grid reveal" id="grid">
+
+    <!-- GUITARRA CRIOLLA -->
+    <div class="prod-card" data-cat="guitarra">
+      <div class="prod-img">🎸<span class="prod-tag">Popular</span></div>
+      <div class="prod-body">
+        <div class="prod-cat">Guitarra Acústica</div>
+        <div class="prod-name">Guitarra Criolla Clásica</div>
+        <div class="prod-desc">Ideal para principiantes. Tapa de abeto, cuerpo de tilo.</div>
+        <div class="prod-footer">
+          <div class="prod-price">S/ 250 <small>/ und.</small></div>
+          <a class="btn-wa-prod"
+             href="https://wa.me/51962935852?text=Hola%2C%20me%20interesa%20la%20Guitarra%20Criolla%20Cl%C3%A1sica.%20%C2%BFPodr%C3%ADan%20darme%20m%C3%A1s%20informaci%C3%B3n%20y%20disponibilidad%3F"
+             target="_blank">💬 Consultar</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- GUITARRA ELÉCTRICA -->
+    <div class="prod-card" data-cat="guitarra">
+      <div class="prod-img">🎸<span class="prod-tag new">Nuevo</span></div>
+      <div class="prod-body">
+        <div class="prod-cat">Guitarra Eléctrica</div>
+        <div class="prod-name">Guitarra Eléctrica Stratocaster</div>
+        <div class="prod-desc">Cuerpo de aliso, mástil de arce, pastillas single coil.</div>
+        <div class="prod-footer">
+          <div class="prod-price">S/ 850 <small>/ und.</small></div>
+          <a class="btn-wa-prod"
+             href="https://wa.me/51962935852?text=Hola%2C%20me%20interesa%20la%20Guitarra%20El%C3%A9ctrica%20Stratocaster.%20%C2%BFPodr%C3%ADan%20darme%20m%C3%A1s%20informaci%C3%B3n%20y%20disponibilidad%3F"
+             target="_blank">💬 Consultar</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- BAJO -->
+    <div class="prod-card" data-cat="guitarra">
+      <div class="prod-img">🎸</div>
+      <div class="prod-body">
+        <div class="prod-cat">Bajo Eléctrico</div>
+        <div class="prod-name">Bajo Eléctrico 4 Cuerdas</div>
+        <div class="prod-desc">Perfecto para conjuntos y bandas. Cuerpo de tilo.</div>
+        <div class="prod-footer">
+          <div class="prod-price">S/ 650 <small>/ und.</small></div>
+          <a class="btn-wa-prod"
+             href="https://wa.me/51962935852?text=Hola%2C%20me%20interesa%20el%20Bajo%20El%C3%A9ctrico%204%20Cuerdas.%20%C2%BFPodr%C3%ADan%20darme%20m%C3%A1s%20informaci%C3%B3n%3F"
+             target="_blank">💬 Consultar</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- BATERÍA -->
+    <div class="prod-card" data-cat="bateria">
+      <div class="prod-img">🥁<span class="prod-tag">Popular</span></div>
+      <div class="prod-body">
+        <div class="prod-cat">Batería Acústica</div>
+        <div class="prod-name">Set Batería Completa 5 piezas</div>
+        <div class="prod-desc">Bombo, redoblante, 2 toms y floor tom. Incluye platos.</div>
+        <div class="prod-footer">
+          <div class="prod-price">S/ 2,200 <small>/ set</small></div>
+          <a class="btn-wa-prod"
+             href="https://wa.me/51962935852?text=Hola%2C%20me%20interesa%20el%20Set%20de%20Bater%C3%ADa%20Completa.%20%C2%BFPodr%C3%ADan%20darme%20m%C3%A1s%20informaci%C3%B3n%3F"
+             target="_blank">💬 Consultar</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- TAMBOR -->
+    <div class="prod-card" data-cat="bateria">
+      <div class="prod-img">🪘</div>
+      <div class="prod-body">
+        <div class="prod-cat">Percusión</div>
+        <div class="prod-name">Tambor / Redoblante</div>
+        <div class="prod-desc">Caja redoblante profesional 14". Varios colores disponibles.</div>
+        <div class="prod-footer">
+          <div class="prod-price">S/ 320 <small>/ und.</small></div>
+          <a class="btn-wa-prod"
+             href="https://wa.me/51962935852?text=Hola%2C%20me%20interesa%20el%20Tambor%20%2F%20Redoblante.%20%C2%BFPodr%C3%ADan%20darme%20m%C3%A1s%20informaci%C3%B3n%3F"
+             target="_blank">💬 Consultar</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- TECLADO -->
+    <div class="prod-card" data-cat="teclado">
+      <div class="prod-img">🎹<span class="prod-tag new">Nuevo</span></div>
+      <div class="prod-body">
+        <div class="prod-cat">Piano / Teclado</div>
+        <div class="prod-name">Teclado Digital 61 Teclas</div>
+        <div class="prod-desc">Ideal para aprender. Incluye soporte, audífonos y micrófono.</div>
+        <div class="prod-footer">
+          <div class="prod-price">S/ 780 <small>/ und.</small></div>
+          <a class="btn-wa-prod"
+             href="https://wa.me/51962935852?text=Hola%2C%20me%20interesa%20el%20Teclado%20Digital%2061%20Teclas.%20%C2%BFPodr%C3%ADan%20darme%20m%C3%A1s%20informaci%C3%B3n%3F"
+             target="_blank">💬 Consultar</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- SAXOFÓN -->
+    <div class="prod-card" data-cat="viento">
+      <div class="prod-img">🎷</div>
+      <div class="prod-body">
+        <div class="prod-cat">Viento</div>
+        <div class="prod-name">Saxofón Alto</div>
+        <div class="prod-desc">Saxofón alto laqueado en dorado, incluye estuche y boquilla.</div>
+        <div class="prod-footer">
+          <div class="prod-price">S/ 1,800 <small>/ und.</small></div>
+          <a class="btn-wa-prod"
+             href="https://wa.me/51962935852?text=Hola%2C%20me%20interesa%20el%20Saxof%C3%B3n%20Alto.%20%C2%BFPodr%C3%ADan%20darme%20m%C3%A1s%20informaci%C3%B3n%3F"
+             target="_blank">💬 Consultar</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- TROMPETA -->
+    <div class="prod-card" data-cat="viento">
+      <div class="prod-img">🎺</div>
+      <div class="prod-body">
+        <div class="prod-cat">Viento</div>
+        <div class="prod-name">Trompeta Bb</div>
+        <div class="prod-desc">Trompeta en si bemol laqueada, con estuche rígido.</div>
+        <div class="prod-footer">
+          <div class="prod-price">S/ 1,200 <small>/ und.</small></div>
+          <a class="btn-wa-prod"
+             href="https://wa.me/51962935852?text=Hola%2C%20me%20interesa%20la%20Trompeta%20Bb.%20%C2%BFPodr%C3%ADan%20darme%20m%C3%A1s%20informaci%C3%B3n%3F"
+             target="_blank">💬 Consultar</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- PARLANTE -->
+    <div class="prod-card" data-cat="sonido">
+      <div class="prod-img">🔊<span class="prod-tag">Popular</span></div>
+      <div class="prod-body">
+        <div class="prod-cat">Sonido</div>
+        <div class="prod-name">Parlante Amplificado 15"</div>
+        <div class="prod-desc">700W RMS, Bluetooth, USB, entrada XLR y RCA. Con trípode.</div>
+        <div class="prod-footer">
+          <div class="prod-price">S/ 950 <small>/ und.</small></div>
+          <a class="btn-wa-prod"
+             href="https://wa.me/51962935852?text=Hola%2C%20me%20interesa%20el%20Parlante%20Amplificado%2015%22.%20%C2%BFPodr%C3%ADan%20darme%20m%C3%A1s%20informaci%C3%B3n%3F"
+             target="_blank">💬 Consultar</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- CONSOLA -->
+    <div class="prod-card" data-cat="sonido">
+      <div class="prod-img">🎚️<span class="prod-tag new">Nuevo</span></div>
+      <div class="prod-body">
+        <div class="prod-cat">Consola / Mezcladora</div>
+        <div class="prod-name">Consola 16 Canales</div>
+        <div class="prod-desc">Mesa de mezclas analógica 16Ch con efectos, USB y phantom.</div>
+        <div class="prod-footer">
+          <div class="prod-price">S/ 1,400 <small>/ und.</small></div>
+          <a class="btn-wa-prod"
+             href="https://wa.me/51962935852?text=Hola%2C%20me%20interesa%20la%20Consola%2016%20Canales.%20%C2%BFPodr%C3%ADan%20darme%20m%C3%A1s%20informaci%C3%B3n%3F"
+             target="_blank">💬 Consultar</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- MICRÓFONO -->
+    <div class="prod-card" data-cat="accesorios">
+      <div class="prod-img">🎤</div>
+      <div class="prod-body">
+        <div class="prod-cat">Accesorios</div>
+        <div class="prod-name">Micrófono Dinámico SM-58</div>
+        <div class="prod-desc">Ideal para voces y presentaciones en vivo. Cable incluido.</div>
+        <div class="prod-footer">
+          <div class="prod-price">S/ 280 <small>/ und.</small></div>
+          <a class="btn-wa-prod"
+             href="https://wa.me/51962935852?text=Hola%2C%20me%20interesa%20el%20Micr%C3%B3fono%20Din%C3%A1mico%20SM-58.%20%C2%BFPodr%C3%ADan%20darme%20m%C3%A1s%20informaci%C3%B3n%3F"
+             target="_blank">💬 Consultar</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- CUERDAS -->
+    <div class="prod-card" data-cat="accesorios">
+      <div class="prod-img">🎵</div>
+      <div class="prod-body">
+        <div class="prod-cat">Accesorios</div>
+        <div class="prod-name">Cuerdas para Guitarra</div>
+        <div class="prod-desc">Juegos de cuerdas acústica, eléctrica y clásica. Varias marcas.</div>
+        <div class="prod-footer">
+          <div class="prod-price">S/ 25 <small>/ juego</small></div>
+          <a class="btn-wa-prod"
+             href="https://wa.me/51962935852?text=Hola%2C%20me%20interesan%20las%20cuerdas%20para%20guitarra.%20%C2%BFQu%C3%A9%20marcas%20y%20calibres%20tienen%20disponibles%3F"
+             target="_blank">💬 Consultar</a>
+        </div>
+      </div>
+    </div>
+
+  </div><!-- /prod-grid -->
+</section>
+
+<!-- ══════ ACADEMIA ══════ -->
+<section id="academia">
+  <div class="academia-top">
+
+    <!-- Lista de cursos -->
+    <div class="reveal">
+      <div class="sec-tag">Academia Musical</div>
+      <h2 class="sec-h2">Aprende con los <em>mejores</em></h2>
+      <p class="sec-sub" style="margin-bottom:0">Clases individuales con maestros certificados, para todas las edades y niveles. Horarios flexibles de lunes a domingo.</p>
+      <div class="courses" style="margin-top:2rem">
+        <div class="course"><div class="course-ico">🎸</div><div><div class="course-name">Guitarra</div><div class="course-detail">Acústica, Eléctrica & Clásica · Todos los niveles</div></div></div>
+        <div class="course"><div class="course-ico">🥁</div><div><div class="course-name">Batería & Percusión</div><div class="course-detail">Rock, Cumbia, Latin · Desde 7 años</div></div></div>
+        <div class="course"><div class="course-ico">🎹</div><div><div class="course-name">Piano & Teclado</div><div class="course-detail">Clásico, Pop, Tropical · Niños y adultos</div></div></div>
+        <div class="course"><div class="course-ico">🎤</div><div><div class="course-name">Canto & Voz</div><div class="course-detail">Técnica vocal, Respiración · Todos los estilos</div></div></div>
+        <div class="course"><div class="course-ico">🎸</div><div><div class="course-name">Bajo Eléctrico</div><div class="course-detail">Fundamentos y técnica avanzada</div></div></div>
+        <div class="course"><div class="course-ico">🎻</div><div><div class="course-name">Violín</div><div class="course-detail">Método clásico · Niños y adultos</div></div></div>
+        <div class="course"><div class="course-ico">🎷</div><div><div class="course-name">Vientos — Saxo / Trompeta</div><div class="course-detail">Técnica, lectura musical y repertorio</div></div></div>
+        <div class="course"><div class="course-ico">🪕</div><div><div class="course-name">Ukulele</div><div class="course-detail">Principiante a intermedio · Rápido y divertido</div></div></div>
+      </div>
+    </div>
+
+    <!-- Tarjeta de precios -->
+    <div class="pricing-wrap reveal">
+      <div class="pricing-card">
+        <div class="pricing-top-bar"></div>
+        <div class="pricing-inner">
+          <div class="pricing-eyebrow">Planes de Inscripción</div>
+          <div class="pricing-h3">Elige tu plan</div>
+          <div class="pricing-sub">Clases personalizadas con maestro dedicado. Todos los precios en Soles (S/.).</div>
+          <div class="plans">
+            <div class="plan sel" onclick="selPlan(this)">
+              <div>
+                <div class="plan-name">Inscripción</div>
+                <div class="plan-desc">Pago único al matricularte · Solo 1 vez</div>
+              </div>
+              <div class="plan-amount">S/ 50</div>
+            </div>
+            <div class="plan" onclick="selPlan(this)">
+              <div>
+                <div class="plan-name">Mensualidad</div>
+                <div class="plan-desc">4 clases por mes (1 por semana)</div>
+              </div>
+              <div class="plan-amount">S/ 150 <span>/mes</span></div>
+            </div>
+            <div class="plan" onclick="selPlan(this)">
+              <div>
+                <div class="plan-name">Mensualidad Intensiva</div>
+                <div class="plan-desc">8 clases por mes (2 por semana) — Mayor avance</div>
+              </div>
+              <div class="plan-amount">S/ 280 <span>/mes</span></div>
+            </div>
+          </div>
+          <div class="incluye">
+            <div class="incluye-title">Todo plan incluye</div>
+            <div class="inc-list">
+              <div class="inc-item">Maestro certificado asignado</div>
+              <div class="inc-item">Material didáctico incluido</div>
+              <div class="inc-item">Acceso a sala de práctica</div>
+              <div class="inc-item">Seguimiento mensual personalizado</div>
+              <div class="inc-item">Participación en recitales internos</div>
+            </div>
+          </div>
+          <a class="btn-inscribir"
+             href="https://wa.me/51962935852?text=Hola%2C%20quisiera%20inscribirme%20a%20la%20academia.%20%C2%BFPodr%C3%ADan%20darme%20m%C3%A1s%20informaci%C3%B3n%20sobre%20los%20cursos%20y%20horarios%20disponibles%3F"
+             target="_blank">💬 Inscribirme por WhatsApp</a>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ══════ HORARIO BANNER ══════ -->
+<div class="horario-banner">
+  <div class="hor-item reveal">
+    <div class="hor-ico">📅</div>
+    <div><div class="hor-lbl">Días de atención</div><div class="hor-val">Lunes a Domingo</div></div>
+  </div>
+  <div class="hor-item reveal">
+    <div class="hor-ico">🌅</div>
+    <div><div class="hor-lbl">Turno Mañana</div><div class="hor-val">8:00 am – 2:00 pm</div></div>
+  </div>
+  <div class="hor-item reveal">
+    <div class="hor-ico">🌙</div>
+    <div><div class="hor-lbl">Turno Tarde/Noche</div><div class="hor-val">4:00 pm – 9:00 pm</div></div>
+  </div>
+  <div class="hor-item reveal">
+    <div class="hor-ico">📍</div>
+    <div><div class="hor-lbl">Ubicación</div><div class="hor-val">Sullana, Piura — Perú</div></div>
+  </div>
+</div>
+
+<!-- ══════ CONTACTO ══════ -->
+<section id="contacto">
+  <div class="contacto-grid">
+
+    <div class="reveal">
+      <div class="sec-tag">Encuéntranos</div>
+      <h2 class="sec-h2">Visítanos o <em>contáctanos</em></h2>
+      <p class="sec-sub" style="margin-bottom:0">Estamos en Sullana para atenderte. También puedes escribirnos por WhatsApp y te respondemos de inmediato.</p>
+      <div class="c-infos">
+        <div class="c-item">
+          <div class="c-ico">📍</div>
+          <div><div class="c-lbl">Dirección</div><div class="c-val">Sullana, Piura — Perú</div></div>
+        </div>
+        <div class="c-item">
+          <div class="c-ico">📱</div>
+          <div>
+            <div class="c-lbl">WhatsApp / Teléfono</div>
+            <div class="c-val"><a href="https://wa.me/51962935852" target="_blank">+51 962 935 852</a></div>
+          </div>
+        </div>
+        <div class="c-item">
+          <div class="c-ico">🕐</div>
+          <div>
+            <div class="c-lbl">Horario</div>
+            <div class="c-val">Lun–Dom: 8:00am – 2:00pm<br>Lun–Dom: 4:00pm – 9:00pm</div>
+          </div>
+        </div>
+      </div>
+      <a class="wa-big"
+         href="https://wa.me/51962935852?text=Hola%2C%20vi%20su%20p%C3%A1gina%20web%20y%20quisiera%20m%C3%A1s%20informaci%C3%B3n%20sobre%20sus%20instrumentos%20y%20servicios."
+         target="_blank">💬 Escríbenos por WhatsApp</a>
+    </div>
+
+    <div class="reveal">
+      <form class="contact-form" onsubmit="enviarForm(event)">
+        <div class="form-row">
+          <div class="fgroup">
+            <label>Nombre</label>
+            <input type="text" placeholder="Tu nombre completo" required>
+          </div>
+          <div class="fgroup">
+            <label>Teléfono / WhatsApp</label>
+            <input type="tel" placeholder="+51 999 999 999">
+          </div>
+        </div>
+        <div class="fgroup">
+          <label>¿Qué te interesa?</label>
+          <select>
+            <option value="">Selecciona una opción...</option>
+            <optgroup label="Instrumentos">
+              <option>Comprar una Guitarra</option>
+              <option>Comprar una Batería</option>
+              <option>Comprar un Piano / Teclado</option>
+              <option>Comprar un instrumento de viento</option>
+              <option>Equipos de sonido (parlantes, consolas)</option>
+              <option>Accesorios</option>
+            </optgroup>
+            <optgroup label="Academia">
+              <option>Inscribirme en clases de Guitarra</option>
+              <option>Inscribirme en clases de Batería</option>
+              <option>Inscribirme en clases de Piano</option>
+              <option>Inscribirme en clases de Canto</option>
+              <option>Inscribirme en clases de Bajo</option>
+              <option>Inscribirme en clases de Violín</option>
+              <option>Inscribirme en clases de Vientos</option>
+              <option>Inscribirme en clases de Ukulele</option>
+            </optgroup>
+            <option>Otro / Consulta general</option>
+          </select>
+        </div>
+        <div class="fgroup">
+          <label>Mensaje</label>
+          <textarea placeholder="Cuéntanos en qué podemos ayudarte..."></textarea>
+        </div>
+        <button type="submit" class="btn-enviar">Enviar Consulta</button>
+      </form>
+    </div>
+
+  </div>
+</section>
+
+<!-- ══════ FOOTER ══════ -->
+<footer>
+  <div class="footer-grid">
+    <div>
+      <div class="logo-wrap">
+        <span class="logo-main">Talentos <span>IM</span></span>
+        <span class="logo-sub" style="margin-top:.3rem;display:block">Instrument Music · Sullana, Piura</span>
+      </div>
+      <p class="f-desc">Tu tienda de instrumentos musicales y academia de música en Sullana. Calidad, pasión y dedicación para formar grandes músicos.</p>
+      <div class="socials">
+        <a href="#" class="soc">f</a>
+        <a href="#" class="soc">ig</a>
+        <a href="#" class="soc">yt</a>
+        <a href="https://wa.me/51962935852" target="_blank" class="soc" style="background:rgba(37,211,102,.15);border-color:rgba(37,211,102,.3);color:#25D366">wa</a>
+      </div>
+    </div>
+    <div class="f-col">
+      <h4>Instrumentos</h4>
+      <ul class="f-links">
+        <li><a href="#instrumentos">Guitarras</a></li>
+        <li><a href="#instrumentos">Baterías & Tambores</a></li>
+        <li><a href="#instrumentos">Pianos & Teclados</a></li>
+        <li><a href="#instrumentos">Vientos</a></li>
+        <li><a href="#instrumentos">Parlantes & Consolas</a></li>
+        <li><a href="#instrumentos">Accesorios</a></li>
+      </ul>
+    </div>
+    <div class="f-col">
+      <h4>Academia</h4>
+      <ul class="f-links">
+        <li><a href="#academia">Guitarra</a></li>
+        <li><a href="#academia">Batería</a></li>
+        <li><a href="#academia">Piano & Teclado</a></li>
+        <li><a href="#academia">Canto & Voz</a></li>
+        <li><a href="#academia">Bajo / Violín</a></li>
+        <li><a href="#academia">Vientos & Ukulele</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <div class="f-copy">© 2025 Casa Musical Talentos Instrument Music — Sullana, Piura</div>
+    <div class="f-copy">Hecho con ♪ para los músicos del norte del Perú</div>
+  </div>
+</footer>
+
+<!-- JS externo al final del body -->
+<script src="main.js"></script>
+</body>
+</html>
