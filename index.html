@@ -22,7 +22,7 @@
   </div>
   <ul class="nav-links">
     <li><a href="#inicio">Inicio</a></li>
-    <li><a href="#instrumentos">Instrumentos</a></li>
+    <li><a href="catalog.html">Instrumentos</a></li>
     <li><a href="#academia">Academia</a></li>
     <li><a href="#contacto">Contacto</a></li>
   </ul>
@@ -48,7 +48,7 @@
       Más de dos décadas formando artistas en Sullana.
     </p>
     <div class="hero-btns">
-      <a href="#instrumentos" class="btn-gold">Ver Instrumentos</a>
+      <a href="catalog.html" class="btn-gold">Ver Instrumentos</a>
       <a href="#academia"     class="btn-outline">Academia →</a>
     </div>
     <div class="hero-info-strip">
@@ -139,228 +139,7 @@
   </div>
 </div>
 
-<!-- ══════ INSTRUMENTOS ══════ -->
-<section id="instrumentos">
-  <div class="reveal">
-    <div class="sec-tag">Catálogo</div>
-    <h2 class="sec-h2">Nuestros <em>Instrumentos</em></h2>
-    <p class="sec-sub">Encuentra el instrumento perfecto para ti. Todos los precios están en Soles (S/.). Consulta disponibilidad directamente por WhatsApp.</p>
-  </div>
 
-  <div class="filters reveal">
-    <button class="ftab on"  onclick="filtrar(this,'todos')">Todos</button>
-    <button class="ftab"     onclick="filtrar(this,'guitarra')">Guitarras</button>
-    <button class="ftab"     onclick="filtrar(this,'bateria')">Baterías</button>
-    <button class="ftab"     onclick="filtrar(this,'teclado')">Pianos/Teclados</button>
-    <button class="ftab"     onclick="filtrar(this,'viento')">Vientos</button>
-    <button class="ftab"     onclick="filtrar(this,'sonido')">Sonido/Consolas</button>
-    <button class="ftab"     onclick="filtrar(this,'accesorios')">Accesorios</button>
-  </div>
-
-  <!-- ════════════════════════════════════════════════════
-       PRODUCTOS — EDITA AQUÍ NOMBRE, DESCRIPCIÓN Y PRECIO
-       · Cambia el emoji del .prod-img
-       · Cambia el texto de .prod-name y .prod-desc
-       · Cambia el precio en .prod-price
-       · Copia un bloque completo para agregar más productos
-       · Cambia data-cat="guitarra|bateria|teclado|viento|sonido|accesorios"
-  ════════════════════════════════════════════════════ -->
-  <div class="prod-grid reveal" id="grid">
-
-    <!-- GUITARRA CRIOLLA -->
-    <div class="prod-card" data-cat="guitarra">
-      <div class="prod-img">🎸<span class="prod-tag">Popular</span></div>
-      <div class="prod-body">
-        <div class="prod-cat">Guitarra Acústica</div>
-        <div class="prod-name">Guitarra Criolla Clásica</div>
-        <div class="prod-desc">Ideal para principiantes. Tapa de abeto, cuerpo de tilo.</div>
-        <div class="prod-footer">
-          <div class="prod-price">S/ 250 <small>/ und.</small></div>
-          <a class="btn-wa-prod"
-             href="https://wa.me/51962935852?text=Hola%2C%20me%20interesa%20la%20Guitarra%20Criolla%20Cl%C3%A1sica.%20%C2%BFPodr%C3%ADan%20darme%20m%C3%A1s%20informaci%C3%B3n%20y%20disponibilidad%3F"
-             target="_blank">💬 Consultar</a>
-        </div>
-      </div>
-    </div>
-
-    <!-- GUITARRA ELÉCTRICA -->
-    <div class="prod-card" data-cat="guitarra">
-      <div class="prod-img">🎸<span class="prod-tag new">Nuevo</span></div>
-      <div class="prod-body">
-        <div class="prod-cat">Guitarra Eléctrica</div>
-        <div class="prod-name">Guitarra Eléctrica Stratocaster</div>
-        <div class="prod-desc">Cuerpo de aliso, mástil de arce, pastillas single coil.</div>
-        <div class="prod-footer">
-          <div class="prod-price">S/ 850 <small>/ und.</small></div>
-          <a class="btn-wa-prod"
-             href="https://wa.me/51962935852?text=Hola%2C%20me%20interesa%20la%20Guitarra%20El%C3%A9ctrica%20Stratocaster.%20%C2%BFPodr%C3%ADan%20darme%20m%C3%A1s%20informaci%C3%B3n%20y%20disponibilidad%3F"
-             target="_blank">💬 Consultar</a>
-        </div>
-      </div>
-    </div>
-
-    <!-- BAJO -->
-    <div class="prod-card" data-cat="guitarra">
-      <div class="prod-img">🎸</div>
-      <div class="prod-body">
-        <div class="prod-cat">Bajo Eléctrico</div>
-        <div class="prod-name">Bajo Eléctrico 4 Cuerdas</div>
-        <div class="prod-desc">Perfecto para conjuntos y bandas. Cuerpo de tilo.</div>
-        <div class="prod-footer">
-          <div class="prod-price">S/ 650 <small>/ und.</small></div>
-          <a class="btn-wa-prod"
-             href="https://wa.me/51962935852?text=Hola%2C%20me%20interesa%20el%20Bajo%20El%C3%A9ctrico%204%20Cuerdas.%20%C2%BFPodr%C3%ADan%20darme%20m%C3%A1s%20informaci%C3%B3n%3F"
-             target="_blank">💬 Consultar</a>
-        </div>
-      </div>
-    </div>
-
-    <!-- BATERÍA -->
-    <div class="prod-card" data-cat="bateria">
-      <div class="prod-img">🥁<span class="prod-tag">Popular</span></div>
-      <div class="prod-body">
-        <div class="prod-cat">Batería Acústica</div>
-        <div class="prod-name">Set Batería Completa 5 piezas</div>
-        <div class="prod-desc">Bombo, redoblante, 2 toms y floor tom. Incluye platos.</div>
-        <div class="prod-footer">
-          <div class="prod-price">S/ 2,200 <small>/ set</small></div>
-          <a class="btn-wa-prod"
-             href="https://wa.me/51962935852?text=Hola%2C%20me%20interesa%20el%20Set%20de%20Bater%C3%ADa%20Completa.%20%C2%BFPodr%C3%ADan%20darme%20m%C3%A1s%20informaci%C3%B3n%3F"
-             target="_blank">💬 Consultar</a>
-        </div>
-      </div>
-    </div>
-
-    <!-- TAMBOR -->
-    <div class="prod-card" data-cat="bateria">
-      <div class="prod-img">🪘</div>
-      <div class="prod-body">
-        <div class="prod-cat">Percusión</div>
-        <div class="prod-name">Tambor / Redoblante</div>
-        <div class="prod-desc">Caja redoblante profesional 14". Varios colores disponibles.</div>
-        <div class="prod-footer">
-          <div class="prod-price">S/ 320 <small>/ und.</small></div>
-          <a class="btn-wa-prod"
-             href="https://wa.me/51962935852?text=Hola%2C%20me%20interesa%20el%20Tambor%20%2F%20Redoblante.%20%C2%BFPodr%C3%ADan%20darme%20m%C3%A1s%20informaci%C3%B3n%3F"
-             target="_blank">💬 Consultar</a>
-        </div>
-      </div>
-    </div>
-
-    <!-- TECLADO -->
-    <div class="prod-card" data-cat="teclado">
-      <div class="prod-img">🎹<span class="prod-tag new">Nuevo</span></div>
-      <div class="prod-body">
-        <div class="prod-cat">Piano / Teclado</div>
-        <div class="prod-name">Teclado Digital 61 Teclas</div>
-        <div class="prod-desc">Ideal para aprender. Incluye soporte, audífonos y micrófono.</div>
-        <div class="prod-footer">
-          <div class="prod-price">S/ 780 <small>/ und.</small></div>
-          <a class="btn-wa-prod"
-             href="https://wa.me/51962935852?text=Hola%2C%20me%20interesa%20el%20Teclado%20Digital%2061%20Teclas.%20%C2%BFPodr%C3%ADan%20darme%20m%C3%A1s%20informaci%C3%B3n%3F"
-             target="_blank">💬 Consultar</a>
-        </div>
-      </div>
-    </div>
-
-    <!-- SAXOFÓN -->
-    <div class="prod-card" data-cat="viento">
-      <div class="prod-img">🎷</div>
-      <div class="prod-body">
-        <div class="prod-cat">Viento</div>
-        <div class="prod-name">Saxofón Alto</div>
-        <div class="prod-desc">Saxofón alto laqueado en dorado, incluye estuche y boquilla.</div>
-        <div class="prod-footer">
-          <div class="prod-price">S/ 1,800 <small>/ und.</small></div>
-          <a class="btn-wa-prod"
-             href="https://wa.me/51962935852?text=Hola%2C%20me%20interesa%20el%20Saxof%C3%B3n%20Alto.%20%C2%BFPodr%C3%ADan%20darme%20m%C3%A1s%20informaci%C3%B3n%3F"
-             target="_blank">💬 Consultar</a>
-        </div>
-      </div>
-    </div>
-
-    <!-- TROMPETA -->
-    <div class="prod-card" data-cat="viento">
-      <div class="prod-img">🎺</div>
-      <div class="prod-body">
-        <div class="prod-cat">Viento</div>
-        <div class="prod-name">Trompeta Bb</div>
-        <div class="prod-desc">Trompeta en si bemol laqueada, con estuche rígido.</div>
-        <div class="prod-footer">
-          <div class="prod-price">S/ 1,200 <small>/ und.</small></div>
-          <a class="btn-wa-prod"
-             href="https://wa.me/51962935852?text=Hola%2C%20me%20interesa%20la%20Trompeta%20Bb.%20%C2%BFPodr%C3%ADan%20darme%20m%C3%A1s%20informaci%C3%B3n%3F"
-             target="_blank">💬 Consultar</a>
-        </div>
-      </div>
-    </div>
-
-    <!-- PARLANTE -->
-    <div class="prod-card" data-cat="sonido">
-      <div class="prod-img">🔊<span class="prod-tag">Popular</span></div>
-      <div class="prod-body">
-        <div class="prod-cat">Sonido</div>
-        <div class="prod-name">Parlante Amplificado 15"</div>
-        <div class="prod-desc">700W RMS, Bluetooth, USB, entrada XLR y RCA. Con trípode.</div>
-        <div class="prod-footer">
-          <div class="prod-price">S/ 950 <small>/ und.</small></div>
-          <a class="btn-wa-prod"
-             href="https://wa.me/51962935852?text=Hola%2C%20me%20interesa%20el%20Parlante%20Amplificado%2015%22.%20%C2%BFPodr%C3%ADan%20darme%20m%C3%A1s%20informaci%C3%B3n%3F"
-             target="_blank">💬 Consultar</a>
-        </div>
-      </div>
-    </div>
-
-    <!-- CONSOLA -->
-    <div class="prod-card" data-cat="sonido">
-      <div class="prod-img">🎚️<span class="prod-tag new">Nuevo</span></div>
-      <div class="prod-body">
-        <div class="prod-cat">Consola / Mezcladora</div>
-        <div class="prod-name">Consola 16 Canales</div>
-        <div class="prod-desc">Mesa de mezclas analógica 16Ch con efectos, USB y phantom.</div>
-        <div class="prod-footer">
-          <div class="prod-price">S/ 1,400 <small>/ und.</small></div>
-          <a class="btn-wa-prod"
-             href="https://wa.me/51962935852?text=Hola%2C%20me%20interesa%20la%20Consola%2016%20Canales.%20%C2%BFPodr%C3%ADan%20darme%20m%C3%A1s%20informaci%C3%B3n%3F"
-             target="_blank">💬 Consultar</a>
-        </div>
-      </div>
-    </div>
-
-    <!-- MICRÓFONO -->
-    <div class="prod-card" data-cat="accesorios">
-      <div class="prod-img">🎤</div>
-      <div class="prod-body">
-        <div class="prod-cat">Accesorios</div>
-        <div class="prod-name">Micrófono Dinámico SM-58</div>
-        <div class="prod-desc">Ideal para voces y presentaciones en vivo. Cable incluido.</div>
-        <div class="prod-footer">
-          <div class="prod-price">S/ 280 <small>/ und.</small></div>
-          <a class="btn-wa-prod"
-             href="https://wa.me/51962935852?text=Hola%2C%20me%20interesa%20el%20Micr%C3%B3fono%20Din%C3%A1mico%20SM-58.%20%C2%BFPodr%C3%ADan%20darme%20m%C3%A1s%20informaci%C3%B3n%3F"
-             target="_blank">💬 Consultar</a>
-        </div>
-      </div>
-    </div>
-
-    <!-- CUERDAS -->
-    <div class="prod-card" data-cat="accesorios">
-      <div class="prod-img">🎵</div>
-      <div class="prod-body">
-        <div class="prod-cat">Accesorios</div>
-        <div class="prod-name">Cuerdas para Guitarra</div>
-        <div class="prod-desc">Juegos de cuerdas acústica, eléctrica y clásica. Varias marcas.</div>
-        <div class="prod-footer">
-          <div class="prod-price">S/ 25 <small>/ juego</small></div>
-          <a class="btn-wa-prod"
-             href="https://wa.me/51962935852?text=Hola%2C%20me%20interesan%20las%20cuerdas%20para%20guitarra.%20%C2%BFQu%C3%A9%20marcas%20y%20calibres%20tienen%20disponibles%3F"
-             target="_blank">💬 Consultar</a>
-        </div>
-      </div>
-    </div>
-
-  </div><!-- /prod-grid -->
-</section>
 
 <!-- ══════ ACADEMIA ══════ -->
 <section id="academia">
@@ -554,12 +333,12 @@
     <div class="f-col">
       <h4>Instrumentos</h4>
       <ul class="f-links">
-        <li><a href="#instrumentos">Guitarras</a></li>
-        <li><a href="#instrumentos">Baterías & Tambores</a></li>
-        <li><a href="#instrumentos">Pianos & Teclados</a></li>
-        <li><a href="#instrumentos">Vientos</a></li>
-        <li><a href="#instrumentos">Parlantes & Consolas</a></li>
-        <li><a href="#instrumentos">Accesorios</a></li>
+        <li><a href="catalog.html">Guitarras</a></li>
+        <li><a href="catalog.html">Baterías & Tambores</a></li>
+        <li><a href="catalog.html">Pianos & Teclados</a></li>
+        <li><a href="catalog.html">Vientos</a></li>
+        <li><a href="catalog.html">Parlantes & Consolas</a></li>
+        <li><a href="catalog.html">Accesorios</a></li>
       </ul>
     </div>
     <div class="f-col">

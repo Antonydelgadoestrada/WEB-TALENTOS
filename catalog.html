@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Catálogo - Casa Musical Talentos — Sullana, Piura</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,700&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<!-- ── WHATSAPP FLOTANTE ── -->
+<a class="wa-float"
+   href="https://wa.me/51962935852?text=Hola%2C%20vi%20su%20p%C3%A1gina%20web%20y%20quisiera%20m%C3%A1s%20informaci%C3%B3n%20sobre%20sus%20productos%20y%20servicios."
+   target="_blank" title="Escríbenos por WhatsApp">💬</a>
+
+<!-- ══════ NAV ══════ -->
+<nav id="navbar">
+  <div class="logo-wrap">
+    <span class="logo-main">Talentos <span>IM</span></span>
+    <span class="logo-sub">Instrument Music · Sullana, Piura</span>
+  </div>
+  <ul class="nav-links">
+    <li><a href="index.html">Inicio</a></li>
+    <li><a href="catalog.html">Instrumentos</a></li>
+    <li><a href="index.html#academia">Academia</a></li>
+    <li><a href="index.html#contacto">Contacto</a></li>
+  </ul>
+  <a class="nav-wa"
+     href="https://wa.me/51962935852?text=Hola%2C%20quisiera%20informaci%C3%B3n%20sobre%20sus%20instrumentos%20y%20clases."
+     target="_blank">💬 WhatsApp</a>
+  <div class="hamburger" onclick="toggleNav()">
+    <span></span><span></span><span></span>
+  </div>
+</nav>
+
+<!-- ══════ INSTRUMENTOS ══════ -->
+<section id="instrumentos">
+  <div class="reveal">
+    <div class="sec-tag">Instrumentos</div>
+    <h2 class="sec-h2">Nuestros <em>Instrumentos</em></h2>
+    <p class="sec-sub">Encuentra el instrumento perfecto para ti. Todos los precios están en Soles (S/.). Consulta disponibilidad directamente por WhatsApp.</p>
+  </div>
+
+  <div class="filters reveal">
+    <button class="ftab on" onclick="filtrar(this,'todos')">Todos</button>
+    <button class="ftab" onclick="filtrar(this,'guitarra')">Guitarras</button>
+    <button class="ftab" onclick="filtrar(this,'bateria')">Baterías</button>
+    <button class="ftab" onclick="filtrar(this,'teclado')">Pianos/Teclados</button>
+    <button class="ftab" onclick="filtrar(this,'viento')">Vientos</button>
+    <button class="ftab" onclick="filtrar(this,'sonido')">Sonido/Consolas</button>
+    <button class="ftab" onclick="filtrar(this,'accesorios')">Accesorios</button>
+  </div>
+
+  <div class="prod-grid reveal" id="grid">
+    <!-- Los productos se cargarán aquí desde products.json -->
+  </div>
+</section>
+
+<!-- ══════ FOOTER ══════ -->
+<footer>
+  <div class="footer-grid">
+    <div>
+      <div class="logo-wrap">
+        <span class="logo-main">Talentos <span>IM</span></span>
+        <span class="logo-sub" style="margin-top:.3rem;display:block">Instrument Music · Sullana, Piura</span>
+      </div>
+      <p class="f-desc">Tu tienda de instrumentos musicales y academia de música en Sullana. Calidad, pasión y dedicación para formar grandes músicos.</p>
+      <div class="socials">
+        <a href="#" class="soc">f</a>
+        <a href="#" class="soc">ig</a>
+        <a href="#" class="soc">yt</a>
+        <a href="https://wa.me/51962935852" target="_blank" class="soc" style="background:rgba(37,211,102,.15);border-color:rgba(37,211,102,.3);color:#25D366">wa</a>
+      </div>
+    </div>
+    <div class="f-col">
+      <h4>Instrumentos</h4>
+      <ul class="f-links">
+        <li><a href="catalog.html">Guitarras</a></li>
+        <li><a href="catalog.html">Baterías & Tambores</a></li>
+        <li><a href="catalog.html">Pianos & Teclados</a></li>
+        <li><a href="catalog.html">Vientos</a></li>
+        <li><a href="catalog.html">Parlantes & Consolas</a></li>
+        <li><a href="catalog.html">Accesorios</a></li>
+      </ul>
+    </div>
+    <div class="f-col">
+      <h4>Academia</h4>
+      <ul class="f-links">
+        <li><a href="index.html#academia">Guitarra</a></li>
+        <li><a href="index.html#academia">Batería</a></li>
+        <li><a href="index.html#academia">Piano & Teclado</a></li>
+        <li><a href="index.html#academia">Canto & Voz</a></li>
+        <li><a href="index.html#academia">Bajo / Violín</a></li>
+        <li><a href="index.html#academia">Vientos & Ukulele</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <div class="f-copy">© 2025 Casa Musical Talentos Instrument Music — Sullana, Piura</div>
+    <div class="f-copy">Hecho con ♪ para los músicos del norte del Perú</div>
+  </div>
+</footer>
+
+<!-- JS externo al final del body -->
+<script src="main.js"></script>
+<script src="catalog.js"></script>
+</body>
+</html>
