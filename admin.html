@@ -161,6 +161,57 @@
 /* ── Separador ── */
 .adm-divider { border:none; border-top:1px solid rgba(242,236,216,.07); margin:3rem 0; }
 
+/* ── Upload de imagen ── */
+.img-upload-wrap {
+  display:flex; flex-direction:column; gap:.75rem;
+}
+.img-preview-box {
+  width:100%; height:160px;
+  background:var(--negro4); border:1px solid rgba(242,236,216,.08);
+  border-radius:3px; overflow:hidden;
+  display:flex; align-items:center; justify-content:center;
+}
+.img-preview-box img {
+  width:100%; height:100%; object-fit:contain; padding:.75rem;
+}
+.img-preview-empty {
+  font-size:2.8rem; opacity:.25; color:var(--oro);
+}
+.img-upload-controls {
+  display:flex; align-items:center; gap:.75rem; flex-wrap:wrap;
+}
+.btn-upload-img {
+  display:inline-flex; align-items:center; gap:.4rem;
+  padding:.6rem 1.1rem;
+  background:rgba(200,168,75,.1); color:var(--oro);
+  border:1px solid rgba(200,168,75,.3); border-radius:2px;
+  font-size:.78rem; font-weight:600; letter-spacing:.04em; text-transform:uppercase;
+  cursor:pointer; font-family:'Outfit',sans-serif; white-space:nowrap;
+  transition:all .3s;
+}
+.btn-upload-img:hover { background:rgba(200,168,75,.18); }
+.img-or-sep {
+  font-size:.75rem; color:var(--texto-dim); white-space:nowrap; flex-shrink:0;
+}
+.img-url-input {
+  flex:1; min-width:160px;
+  background:var(--negro4); border:1px solid rgba(242,236,216,.1);
+  color:var(--texto); padding:.6rem .9rem;
+  font-family:'Outfit',sans-serif; font-size:.85rem;
+  border-radius:2px; outline:none; transition:border-color .3s;
+}
+.img-url-input:focus { border-color:var(--oro); }
+.img-url-input::placeholder { color:var(--texto-dim); }
+.upload-status {
+  font-size:.78rem; color:var(--texto-dim); display:flex; align-items:center; gap:.5rem;
+}
+.upload-status.err { color:#e74c3c; }
+.upload-spinner {
+  width:14px; height:14px; border-radius:50%;
+  border:2px solid rgba(200,168,75,.2); border-top-color:var(--oro);
+  animation:spin2 .7s linear infinite; flex-shrink:0;
+}
+
 @media (max-width:640px) {
   .adm-form-grid { grid-template-columns:1fr; }
   .admin-stats { gap:1rem; }
@@ -262,14 +313,28 @@
         </div>
 
         <div class="adm-fgroup adm-form-full">
-          <label>URL o Ruta de Imagen (opcional)</label>
-          <input type="text" name="image" placeholder="images/foto.png  ó  https://...">
+          <label>Imagen del Producto</label>
+          <div class="img-upload-wrap">
+            <div class="img-preview-box" id="addImgPreview">
+              <div class="img-preview-empty">🎸</div>
+            </div>
+            <div class="img-upload-controls">
+              <label class="btn-upload-img">
+                📁 Subir imagen
+                <input type="file" accept="image/*" style="display:none" onchange="handleUpload(event,'add')">
+              </label>
+              <span class="img-or-sep">ó pega una URL</span>
+              <input type="text" id="addImgUrl" name="image" class="img-url-input"
+                     placeholder="https://..." oninput="previewUrl('add',this.value)">
+            </div>
+            <div id="addUploadStatus" class="upload-status adm-hidden"></div>
+          </div>
         </div>
 
       </div>
       <div class="adm-form-actions">
         <button type="submit" class="btn-adm-primary" id="btnAdd">+ Añadir Producto</button>
-        <button type="reset"  class="btn-adm-secondary" onclick="resetPrice()">Limpiar</button>
+        <button type="reset"  class="btn-adm-secondary" onclick="resetAddForm()">Limpiar</button>
       </div>
     </form>
   </div>
@@ -355,8 +420,22 @@
         </div>
 
         <div class="adm-fgroup adm-form-full">
-          <label>URL o Ruta de Imagen</label>
-          <input type="text" id="editImage" placeholder="images/foto.png  ó  https://...">
+          <label>Imagen del Producto</label>
+          <div class="img-upload-wrap">
+            <div class="img-preview-box" id="editImgPreview">
+              <div class="img-preview-empty">🎸</div>
+            </div>
+            <div class="img-upload-controls">
+              <label class="btn-upload-img">
+                📁 Subir imagen
+                <input type="file" accept="image/*" style="display:none" onchange="handleUpload(event,'edit')">
+              </label>
+              <span class="img-or-sep">ó pega una URL</span>
+              <input type="text" id="editImgUrl" class="img-url-input"
+                     placeholder="https://..." oninput="previewUrl('edit',this.value)">
+            </div>
+            <div id="editUploadStatus" class="upload-status adm-hidden"></div>
+          </div>
         </div>
 
       </div>
@@ -672,6 +751,8 @@ async function handleAdd(e) {
 
   e.target.reset();
   document.querySelector('#addForm [name=price]').value = '0';
+  document.getElementById('addImgUrl').value = '';
+  previewUrl('add', '');
   populateCatSelect('addCatSel', null);
   toast('Producto añadido correctamente', 'ok');
   await loadAndRender();
@@ -684,8 +765,9 @@ function openEdit(id) {
   document.getElementById('editName').value        = p.name        || '';
   document.getElementById('editPrice').value       = p.price       || 0;
   document.getElementById('editDescription').value = p.description || '';
-  document.getElementById('editImage').value       = p.image       || '';
+  document.getElementById('editImgUrl').value      = p.image       || '';
   document.getElementById('editTag').value         = p.tag         || '';
+  previewUrl('edit', p.image || '');
   populateCatSelect('editCatSel', p.category);
   document.getElementById('editNewCatRow').classList.add('adm-hidden');
   document.getElementById('editModal').classList.add('open');
@@ -711,7 +793,7 @@ async function handleEdit(e) {
     category:    cat,
     price:       Number(document.getElementById('editPrice').value) || 0,
     description: document.getElementById('editDescription').value.trim(),
-    image:       document.getElementById('editImage').value.trim(),
+    image:       document.getElementById('editImgUrl').value.trim(),
     tag,
   }).eq('id', editingId);
 
@@ -753,6 +835,70 @@ function filtrarAdmin(btn, cat) {
 }
 
 /* ══════════════════════════════════════════
+   UPLOAD DE IMAGEN — Supabase Storage
+   Bucket: "productos" (debe ser público)
+══════════════════════════════════════════ */
+const STORAGE_BUCKET = 'productos';
+
+async function handleUpload(event, prefix) {
+  const file = event.target.files[0];
+  if (!file) return;
+
+  /* Validar tipo */
+  if (!file.type.startsWith('image/')) {
+    toast('Solo se permiten archivos de imagen', 'err'); return;
+  }
+  /* Validar tamaño (5 MB máx) */
+  if (file.size > 5 * 1024 * 1024) {
+    toast('La imagen no puede superar 5 MB', 'err'); return;
+  }
+
+  const statusEl = document.getElementById(prefix + 'UploadStatus');
+  statusEl.innerHTML = '<div class="upload-spinner"></div> Subiendo imagen...';
+  statusEl.classList.remove('adm-hidden', 'err');
+
+  /* Nombre único para el archivo */
+  const ext      = file.name.split('.').pop().toLowerCase();
+  const fileName = `${Date.now()}-${Math.random().toString(36).slice(2, 7)}.${ext}`;
+
+  const { error: upErr } = await initSB()
+    .storage.from(STORAGE_BUCKET)
+    .upload(fileName, file, { cacheControl: '3600', upsert: false });
+
+  if (upErr) {
+    statusEl.innerHTML = '❌ Error al subir: ' + upErr.message;
+    statusEl.classList.add('err');
+    return;
+  }
+
+  /* Obtener URL pública */
+  const { data: { publicUrl } } = initSB()
+    .storage.from(STORAGE_BUCKET)
+    .getPublicUrl(fileName);
+
+  /* Auto-rellenar el input de URL y mostrar preview */
+  document.getElementById(prefix + 'ImgUrl').value = publicUrl;
+  previewUrl(prefix, publicUrl);
+
+  statusEl.classList.add('adm-hidden');
+  toast('Imagen subida correctamente', 'ok');
+
+  /* Limpiar el input file para permitir re-subir el mismo archivo */
+  event.target.value = '';
+}
+
+function previewUrl(prefix, url) {
+  const box = document.getElementById(prefix + 'ImgPreview');
+  if (!box) return;
+  if (url && url.trim()) {
+    box.innerHTML = `<img src="${url.trim()}" alt="preview"
+      onerror="this.parentElement.innerHTML='<div class=img-preview-empty style=color:#e74c3c>❌</div>'">`;
+  } else {
+    box.innerHTML = '<div class="img-preview-empty">🎸</div>';
+  }
+}
+
+/* ══════════════════════════════════════════
    FORMULARIO
 ══════════════════════════════════════════ */
 function toggleAddForm() {
@@ -760,8 +906,13 @@ function toggleAddForm() {
   const btn = document.getElementById('btnToggleAdd');
   btn.textContent = s.classList.toggle('adm-hidden') ? '+ Mostrar formulario' : '− Ocultar formulario';
 }
-function resetPrice() {
-  setTimeout(() => { document.querySelector('#addForm [name=price]').value = '0'; }, 0);
+function resetAddForm() {
+  setTimeout(() => {
+    document.querySelector('#addForm [name=price]').value = '0';
+    document.getElementById('addImgUrl').value = '';
+    previewUrl('add', '');
+    populateCatSelect('addCatSel', null);
+  }, 0);
 }
 
 /* ══════════════════════════════════════════
