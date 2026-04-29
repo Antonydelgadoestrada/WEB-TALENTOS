@@ -846,19 +846,24 @@ async function handleUpload(event, prefix) {
 
   /* Validar tipo */
   if (!file.type.startsWith('image/')) {
-    toast('Solo se permiten archivos de imagen', 'err'); return;
+    toast('Solo se permiten imágenes (PNG, JPG, WebP, etc.)', 'err'); return;
   }
   /* Validar tamaño (5 MB máx) */
   if (file.size > 5 * 1024 * 1024) {
     toast('La imagen no puede superar 5 MB', 'err'); return;
   }
 
+  /* ── Vista previa LOCAL inmediata (no espera a Supabase) ── */
+  const reader = new FileReader();
+  reader.onload = ev => previewUrl(prefix, ev.target.result);
+  reader.readAsDataURL(file);
+
   const statusEl = document.getElementById(prefix + 'UploadStatus');
-  statusEl.innerHTML = '<div class="upload-spinner"></div> Subiendo imagen...';
+  statusEl.innerHTML = '<div class="upload-spinner"></div> Subiendo a Supabase…';
   statusEl.classList.remove('adm-hidden', 'err');
 
-  /* Nombre único para el archivo */
-  const ext      = file.name.split('.').pop().toLowerCase();
+  /* Nombre único */
+  const ext      = file.name.split('.').pop().toLowerCase().replace(/[^a-z0-9]/g, '');
   const fileName = `${Date.now()}-${Math.random().toString(36).slice(2, 7)}.${ext}`;
 
   const { error: upErr } = await initSB()
@@ -866,24 +871,25 @@ async function handleUpload(event, prefix) {
     .upload(fileName, file, { cacheControl: '3600', upsert: false });
 
   if (upErr) {
-    statusEl.innerHTML = '❌ Error al subir: ' + upErr.message;
+    /* Mostrar error claro con instrucciones */
+    const esBucketMissing = upErr.message.includes('Bucket not found') || upErr.message.includes('bucket');
+    statusEl.innerHTML = esBucketMissing
+      ? '❌ Bucket no encontrado. Ve a <strong>Supabase → Storage → New bucket</strong>, crea un bucket llamado exactamente <strong>productos</strong> con "Public" activado, luego ejecuta <em>supabase-storage.sql</em>.'
+      : `❌ Error: ${upErr.message}`;
     statusEl.classList.add('err');
+    /* La vista previa local ya se mostró — el admin puede copiar y pegar la imagen manualmente */
     return;
   }
 
-  /* Obtener URL pública */
+  /* URL pública de Supabase */
   const { data: { publicUrl } } = initSB()
     .storage.from(STORAGE_BUCKET)
     .getPublicUrl(fileName);
 
-  /* Auto-rellenar el input de URL y mostrar preview */
+  /* Solo actualizar el campo URL — la vista previa local ya está mostrando la imagen */
   document.getElementById(prefix + 'ImgUrl').value = publicUrl;
-  previewUrl(prefix, publicUrl);
-
   statusEl.classList.add('adm-hidden');
-  toast('Imagen subida correctamente', 'ok');
-
-  /* Limpiar el input file para permitir re-subir el mismo archivo */
+  toast('Imagen subida correctamente ✓', 'ok');
   event.target.value = '';
 }
 
