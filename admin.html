@@ -7,308 +7,177 @@
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,700&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="styles.css">
 <style>
-/* ── Utilidad ── */
 .adm-hidden { display: none !important; }
 
-/* ── Login overlay ── */
+/* ── Login ── */
 #loginOverlay {
   position: fixed; inset: 0; z-index: 9999;
   background: var(--negro);
   display: flex; align-items: center; justify-content: center;
 }
 .login-card {
-  background: var(--negro3);
-  border: 1px solid rgba(200,168,75,.25);
-  border-radius: 6px; padding: 3rem 2.5rem;
-  width: min(420px, 90vw); text-align: center;
+  background: var(--negro3); border: 1px solid rgba(200,168,75,.25);
+  border-radius: 6px; padding: 3rem 2.5rem; width: min(420px, 90vw); text-align: center;
 }
 .login-logo { display: flex; flex-direction: column; align-items: center; margin-bottom: 1.8rem; }
-.login-title {
-  font-family: 'Cormorant Garamond', serif;
-  font-size: 1.9rem; font-weight: 700; margin-bottom: .4rem;
-}
-.login-title em { font-style: italic; color: var(--oro); }
-.login-sub { font-size: .82rem; color: var(--texto-mid); margin-bottom: 2rem; }
-.login-fields { text-align: left; margin-bottom: 1rem; }
+.login-title { font-family:'Cormorant Garamond',serif; font-size:1.9rem; font-weight:700; margin-bottom:.4rem; }
+.login-title em { font-style:italic; color:var(--oro); }
+.login-sub { font-size:.82rem; color:var(--texto-mid); margin-bottom:2rem; }
 .login-card input[type=email],
 .login-card input[type=password] {
-  width: 100%; padding: .9rem 1rem;
-  background: var(--negro4); border: 1px solid rgba(200,168,75,.2);
-  color: var(--texto); font-family: 'Outfit', sans-serif; font-size: .9rem;
-  border-radius: 2px; outline: none; margin-bottom: .8rem;
-  transition: border-color .3s;
+  width:100%; padding:.9rem 1rem;
+  background:var(--negro4); border:1px solid rgba(200,168,75,.2);
+  color:var(--texto); font-family:'Outfit',sans-serif; font-size:.9rem;
+  border-radius:2px; outline:none; margin-bottom:.8rem; transition:border-color .3s;
 }
-.login-card input:focus { border-color: var(--oro); }
+.login-card input:focus { border-color:var(--oro); }
 .btn-login {
-  width: 100%; padding: .95rem;
-  background: var(--oro); color: var(--negro);
-  font-weight: 700; font-size: .88rem; letter-spacing: .08em; text-transform: uppercase;
-  border: none; border-radius: 2px; cursor: pointer; font-family: 'Outfit', sans-serif;
-  transition: all .3s;
+  width:100%; padding:.95rem;
+  background:var(--oro); color:var(--negro);
+  font-weight:700; font-size:.88rem; letter-spacing:.08em; text-transform:uppercase;
+  border:none; border-radius:2px; cursor:pointer; font-family:'Outfit',sans-serif; transition:all .3s;
 }
-.btn-login:hover:not(:disabled) { background: var(--oro-claro); }
-.btn-login:disabled { opacity: .6; cursor: not-allowed; }
-.login-error { color: #e74c3c; font-size: .82rem; margin-top: .8rem; }
+.btn-login:hover:not(:disabled) { background:var(--oro-claro); }
+.btn-login:disabled { opacity:.6; cursor:not-allowed; }
+.login-error { color:#e74c3c; font-size:.82rem; margin-top:.8rem; }
 
-/* ── Admin nav ── */
-.admin-badge {
-  font-size: .62rem; letter-spacing: .15em; text-transform: uppercase;
-  background: var(--oro); color: var(--negro);
-  padding: .2rem .6rem; border-radius: 2px; font-weight: 700;
-}
-.btn-nav-link {
-  padding: .45rem 1rem;
-  background: transparent; color: var(--texto-mid);
-  border: 1px solid rgba(242,236,216,.12); border-radius: 2px;
-  font-size: .78rem; cursor: pointer; font-family: 'Outfit', sans-serif;
-  text-decoration: none; display: inline-flex; align-items: center;
-  transition: all .3s;
-}
-.btn-nav-link:hover { border-color: var(--oro); color: var(--oro); }
-.btn-logout {
-  padding: .45rem 1rem;
-  background: transparent; color: var(--texto-mid);
-  border: 1px solid rgba(242,236,216,.12); border-radius: 2px;
-  font-size: .78rem; cursor: pointer; font-family: 'Outfit', sans-serif;
-  transition: all .3s;
-}
-.btn-logout:hover { border-color: rgba(231,76,60,.5); color: #e74c3c; }
+/* ── Nav ── */
+.admin-badge { font-size:.62rem; letter-spacing:.15em; text-transform:uppercase; background:var(--oro); color:var(--negro); padding:.2rem .6rem; border-radius:2px; font-weight:700; }
+.btn-nav-link { padding:.45rem 1rem; background:transparent; color:var(--texto-mid); border:1px solid rgba(242,236,216,.12); border-radius:2px; font-size:.78rem; cursor:pointer; font-family:'Outfit',sans-serif; text-decoration:none; display:inline-flex; align-items:center; transition:all .3s; }
+.btn-nav-link:hover { border-color:var(--oro); color:var(--oro); }
+.btn-logout { padding:.45rem 1rem; background:transparent; color:var(--texto-mid); border:1px solid rgba(242,236,216,.12); border-radius:2px; font-size:.78rem; cursor:pointer; font-family:'Outfit',sans-serif; transition:all .3s; }
+.btn-logout:hover { border-color:rgba(231,76,60,.5); color:#e74c3c; }
 
-/* ── Stats bar ── */
-.admin-stats {
-  display: flex; gap: 2rem; flex-wrap: wrap; align-items: center;
-  padding: .85rem 5%;
-  background: var(--negro4);
-  border-bottom: 1px solid rgba(200,168,75,.08);
-  margin-top: 65px;
-}
-.stat-item { display: flex; align-items: center; gap: .45rem; font-size: .8rem; color: var(--texto-mid); }
-.stat-item strong { color: var(--oro); font-size: 1.05rem; font-family: 'Cormorant Garamond', serif; }
+/* ── Stats ── */
+.admin-stats { display:flex; gap:2rem; flex-wrap:wrap; align-items:center; padding:.85rem 5%; background:var(--negro4); border-bottom:1px solid rgba(200,168,75,.08); margin-top:65px; }
+.stat-item { display:flex; align-items:center; gap:.45rem; font-size:.8rem; color:var(--texto-mid); }
+.stat-item strong { color:var(--oro); font-size:1.05rem; font-family:'Cormorant Garamond',serif; }
 
-/* ── Layout principal ── */
-#adminMain { padding: 2.5rem 5% 6rem; }
-
-/* ── Títulos de sección ── */
-.adm-section-header {
-  display: flex; justify-content: space-between; align-items: center;
-  margin-bottom: 1.5rem; flex-wrap: wrap; gap: 1rem;
-}
-.adm-section-title {
-  font-family: 'Cormorant Garamond', serif;
-  font-size: 1.6rem; font-weight: 700;
-}
-.adm-section-title em { font-style: italic; color: var(--oro); }
+/* ── Layout ── */
+#adminMain { padding:2.5rem 5% 6rem; }
+.adm-section-header { display:flex; justify-content:space-between; align-items:center; margin-bottom:1.5rem; flex-wrap:wrap; gap:1rem; }
+.adm-section-title { font-family:'Cormorant Garamond',serif; font-size:1.6rem; font-weight:700; }
+.adm-section-title em { font-style:italic; color:var(--oro); }
 
 /* ── Botones ── */
-.btn-adm-primary {
-  padding: .8rem 1.8rem;
-  background: var(--oro); color: var(--negro);
-  font-weight: 700; font-size: .82rem; letter-spacing: .06em; text-transform: uppercase;
-  border: none; border-radius: 2px; cursor: pointer;
-  font-family: 'Outfit', sans-serif; transition: all .3s;
-}
-.btn-adm-primary:hover:not(:disabled) { background: var(--oro-claro); transform: translateY(-1px); }
-.btn-adm-primary:disabled { opacity: .6; cursor: not-allowed; }
+.btn-adm-primary { padding:.8rem 1.8rem; background:var(--oro); color:var(--negro); font-weight:700; font-size:.82rem; letter-spacing:.06em; text-transform:uppercase; border:none; border-radius:2px; cursor:pointer; font-family:'Outfit',sans-serif; transition:all .3s; }
+.btn-adm-primary:hover:not(:disabled) { background:var(--oro-claro); transform:translateY(-1px); }
+.btn-adm-primary:disabled { opacity:.6; cursor:not-allowed; }
+.btn-adm-secondary { padding:.8rem 1.4rem; background:transparent; color:var(--texto-mid); border:1px solid rgba(242,236,216,.15); border-radius:2px; cursor:pointer; font-size:.82rem; font-family:'Outfit',sans-serif; transition:all .3s; }
+.btn-adm-secondary:hover { border-color:var(--oro); color:var(--oro); }
+.btn-toggle-add { padding:.55rem 1.2rem; background:rgba(200,168,75,.1); color:var(--oro); border:1px solid rgba(200,168,75,.3); border-radius:2px; cursor:pointer; font-weight:600; font-size:.8rem; letter-spacing:.06em; text-transform:uppercase; font-family:'Outfit',sans-serif; transition:all .3s; }
+.btn-toggle-add:hover { background:rgba(200,168,75,.18); }
+.btn-adm-export { padding:.45rem 1rem; border:1px solid rgba(200,168,75,.3); background:rgba(200,168,75,.06); color:var(--oro); font-size:.78rem; border-radius:2px; cursor:pointer; font-family:'Outfit',sans-serif; transition:all .3s; }
+.btn-adm-export:hover { background:rgba(200,168,75,.14); }
+.btn-adm-danger { padding:.45rem 1rem; border:1px solid rgba(231,76,60,.3); background:transparent; color:#e74c3c; font-size:.78rem; border-radius:2px; cursor:pointer; font-family:'Outfit',sans-serif; transition:all .3s; }
+.btn-adm-danger:hover { background:rgba(231,76,60,.08); }
 
-.btn-adm-secondary {
-  padding: .8rem 1.4rem;
-  background: transparent; color: var(--texto-mid);
-  border: 1px solid rgba(242,236,216,.15); border-radius: 2px; cursor: pointer;
-  font-size: .82rem; font-family: 'Outfit', sans-serif; transition: all .3s;
-}
-.btn-adm-secondary:hover { border-color: var(--oro); color: var(--oro); }
-
-.btn-toggle-add {
-  padding: .55rem 1.2rem;
-  background: rgba(200,168,75,.1); color: var(--oro);
-  border: 1px solid rgba(200,168,75,.3); border-radius: 2px; cursor: pointer;
-  font-weight: 600; font-size: .8rem; letter-spacing: .06em; text-transform: uppercase;
-  font-family: 'Outfit', sans-serif; transition: all .3s;
-}
-.btn-toggle-add:hover { background: rgba(200,168,75,.18); }
-
-.btn-adm-export {
-  padding: .45rem 1rem;
-  border: 1px solid rgba(200,168,75,.3); background: rgba(200,168,75,.06);
-  color: var(--oro); font-size: .78rem; border-radius: 2px;
-  cursor: pointer; font-family: 'Outfit', sans-serif; transition: all .3s;
-}
-.btn-adm-export:hover { background: rgba(200,168,75,.14); }
-
-.btn-adm-danger {
-  padding: .45rem 1rem;
-  border: 1px solid rgba(231,76,60,.3); background: transparent;
-  color: #e74c3c; font-size: .78rem; border-radius: 2px;
-  cursor: pointer; font-family: 'Outfit', sans-serif; transition: all .3s;
-}
-.btn-adm-danger:hover { background: rgba(231,76,60,.08); }
-
-/* ── Formulario Add/Edit ── */
-.adm-form-card {
-  background: var(--negro3);
-  border: 1px solid rgba(200,168,75,.15);
-  border-radius: 4px; padding: 2rem;
-  margin-bottom: 2.5rem;
-}
-.adm-form-grid {
-  display: grid; grid-template-columns: 1fr 1fr;
-  gap: 1rem; margin-bottom: 1.2rem;
-}
-.adm-form-full { grid-column: 1 / -1; }
-.adm-fgroup { display: flex; flex-direction: column; gap: .4rem; }
-.adm-fgroup label {
-  font-size: .7rem; text-transform: uppercase; letter-spacing: .08em; color: var(--texto-dim);
-}
+/* ── Formularios ── */
+.adm-form-card { background:var(--negro3); border:1px solid rgba(200,168,75,.15); border-radius:4px; padding:2rem; margin-bottom:2.5rem; }
+.adm-form-grid { display:grid; grid-template-columns:1fr 1fr; gap:1rem; margin-bottom:1.2rem; }
+.adm-form-full { grid-column:1/-1; }
+.adm-fgroup { display:flex; flex-direction:column; gap:.4rem; }
+.adm-fgroup label { font-size:.7rem; text-transform:uppercase; letter-spacing:.08em; color:var(--texto-dim); }
 .adm-fgroup input,
 .adm-fgroup select,
-.adm-fgroup textarea {
-  background: var(--negro4); border: 1px solid rgba(242,236,216,.1);
-  color: var(--texto); padding: .75rem .9rem;
-  font-family: 'Outfit', sans-serif; font-size: .88rem;
-  border-radius: 2px; outline: none; transition: border-color .3s;
-}
+.adm-fgroup textarea { background:var(--negro4); border:1px solid rgba(242,236,216,.1); color:var(--texto); padding:.75rem .9rem; font-family:'Outfit',sans-serif; font-size:.88rem; border-radius:2px; outline:none; transition:border-color .3s; }
 .adm-fgroup input:focus,
 .adm-fgroup select:focus,
-.adm-fgroup textarea:focus { border-color: var(--oro); }
-.adm-fgroup select option { background: var(--negro3); }
-.adm-fgroup textarea { min-height: 80px; resize: vertical; }
-.adm-form-actions { display: flex; gap: .8rem; flex-wrap: wrap; }
+.adm-fgroup textarea:focus { border-color:var(--oro); }
+.adm-fgroup select option { background:var(--negro3); }
+.adm-fgroup textarea { min-height:80px; resize:vertical; }
+.adm-form-actions { display:flex; gap:.8rem; flex-wrap:wrap; }
+
+/* ── Nueva categoría inline ── */
+.new-cat-row {
+  display:flex; gap:.5rem; align-items:center; margin-top:.4rem;
+}
+.new-cat-row input {
+  flex:1; background:var(--negro4); border:1px solid rgba(200,168,75,.3);
+  color:var(--texto); padding:.6rem .8rem;
+  font-family:'Outfit',sans-serif; font-size:.85rem;
+  border-radius:2px; outline:none; transition:border-color .3s;
+}
+.new-cat-row input:focus { border-color:var(--oro); }
+.btn-create-cat {
+  padding:.6rem 1rem; background:var(--oro); color:var(--negro);
+  font-weight:700; font-size:.75rem; letter-spacing:.04em; text-transform:uppercase;
+  border:none; border-radius:2px; cursor:pointer; white-space:nowrap;
+  font-family:'Outfit',sans-serif; transition:all .3s; flex-shrink:0;
+}
+.btn-create-cat:hover { background:var(--oro-claro); }
 
 /* ── Toolbar ── */
-.adm-toolbar { display: flex; gap: .6rem; flex-wrap: wrap; align-items: center; }
+.adm-toolbar { display:flex; gap:.6rem; flex-wrap:wrap; align-items:center; }
 
-/* ── Lista de productos ── */
-.admin-prod-list { display: flex; flex-direction: column; gap: .55rem; }
+/* ── Lista productos ── */
+.admin-prod-list { display:flex; flex-direction:column; gap:.55rem; }
+.adm-prod-row { display:flex; align-items:center; gap:1.2rem; background:var(--negro3); border:1px solid rgba(242,236,216,.06); border-radius:4px; padding:1rem 1.2rem; transition:border-color .3s; }
+.adm-prod-row:hover { border-color:rgba(200,168,75,.2); }
+.adm-prod-thumb { width:56px; height:56px; flex-shrink:0; background:var(--negro4); border-radius:3px; overflow:hidden; display:flex; align-items:center; justify-content:center; font-size:1.6rem; color:var(--oro); }
+.adm-prod-thumb img { width:100%; height:100%; object-fit:cover; }
+.adm-prod-info { flex:1; min-width:0; }
+.adm-prod-name { font-family:'Cormorant Garamond',serif; font-size:1.05rem; font-weight:600; margin-bottom:.25rem; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+.adm-prod-meta { display:flex; gap:.8rem; align-items:center; flex-wrap:wrap; }
+.adm-meta-cat { font-size:.68rem; letter-spacing:.1em; text-transform:uppercase; color:var(--oro); }
+.adm-meta-price { font-size:.85rem; color:var(--texto-mid); font-family:'Cormorant Garamond',serif; font-weight:600; }
+.adm-meta-tag { font-size:.62rem; padding:.15rem .5rem; background:var(--oro); color:var(--negro); border-radius:1px; font-weight:700; letter-spacing:.06em; text-transform:uppercase; }
+.adm-meta-tag.new { background:#2ecc71; color:#fff; }
+.adm-prod-actions { display:flex; gap:.5rem; flex-shrink:0; }
+.btn-edit-prod { padding:.4rem .9rem; border:1px solid rgba(200,168,75,.3); background:transparent; color:var(--oro); font-size:.75rem; border-radius:2px; cursor:pointer; font-family:'Outfit',sans-serif; transition:all .3s; }
+.btn-edit-prod:hover { background:rgba(200,168,75,.1); }
+.btn-del-prod { padding:.4rem .9rem; border:1px solid rgba(231,76,60,.25); background:transparent; color:#e74c3c; font-size:.75rem; border-radius:2px; cursor:pointer; font-family:'Outfit',sans-serif; transition:all .3s; }
+.btn-del-prod:hover { background:rgba(231,76,60,.1); }
+.adm-empty { text-align:center; padding:3rem; color:var(--texto-dim); font-size:.9rem; font-style:italic; border:1px dashed rgba(242,236,216,.06); border-radius:4px; }
 
-.adm-prod-row {
-  display: flex; align-items: center; gap: 1.2rem;
-  background: var(--negro3); border: 1px solid rgba(242,236,216,.06);
-  border-radius: 4px; padding: 1rem 1.2rem;
-  transition: border-color .3s;
-}
-.adm-prod-row:hover { border-color: rgba(200,168,75,.2); }
+/* ── Spinner ── */
+.adm-loading { display:flex; align-items:center; justify-content:center; gap:.8rem; padding:3rem; color:var(--texto-dim); font-size:.9rem; }
+.adm-spinner { width:20px; height:20px; border-radius:50%; border:2px solid rgba(200,168,75,.2); border-top-color:var(--oro); animation:spin2 .8s linear infinite; }
+@keyframes spin2 { to { transform:rotate(360deg); } }
 
-.adm-prod-thumb {
-  width: 56px; height: 56px; flex-shrink: 0;
-  background: var(--negro4); border-radius: 3px; overflow: hidden;
-  display: flex; align-items: center; justify-content: center;
-  font-size: 1.6rem; color: var(--oro);
-}
-.adm-prod-thumb img { width: 100%; height: 100%; object-fit: cover; }
+/* ── Lista categorías ── */
+.cat-list { display:flex; flex-direction:column; gap:.4rem; margin-bottom:1.5rem; }
+.cat-row { display:flex; align-items:center; gap:1rem; background:var(--negro3); border:1px solid rgba(242,236,216,.06); border-radius:3px; padding:.75rem 1.2rem; }
+.cat-name { flex:1; font-size:.9rem; }
+.cat-slug { font-size:.72rem; letter-spacing:.1em; text-transform:uppercase; color:var(--oro); min-width:100px; }
 
-.adm-prod-info { flex: 1; min-width: 0; }
-.adm-prod-name {
-  font-family: 'Cormorant Garamond', serif;
-  font-size: 1.05rem; font-weight: 600; margin-bottom: .25rem;
-  white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
-}
-.adm-prod-meta { display: flex; gap: .8rem; align-items: center; flex-wrap: wrap; }
-.adm-meta-cat  { font-size: .68rem; letter-spacing: .1em; text-transform: uppercase; color: var(--oro); }
-.adm-meta-price { font-size: .85rem; color: var(--texto-mid); font-family: 'Cormorant Garamond', serif; font-weight: 600; }
-.adm-meta-tag {
-  font-size: .62rem; padding: .15rem .5rem;
-  background: var(--oro); color: var(--negro);
-  border-radius: 1px; font-weight: 700; letter-spacing: .06em; text-transform: uppercase;
-}
-.adm-meta-tag.new { background: #2ecc71; color: #fff; }
-
-.adm-prod-actions { display: flex; gap: .5rem; flex-shrink: 0; }
-.btn-edit-prod {
-  padding: .4rem .9rem;
-  border: 1px solid rgba(200,168,75,.3); background: transparent;
-  color: var(--oro); font-size: .75rem; border-radius: 2px;
-  cursor: pointer; font-family: 'Outfit', sans-serif; transition: all .3s;
-}
-.btn-edit-prod:hover { background: rgba(200,168,75,.1); }
-.btn-del-prod {
-  padding: .4rem .9rem;
-  border: 1px solid rgba(231,76,60,.25); background: transparent;
-  color: #e74c3c; font-size: .75rem; border-radius: 2px;
-  cursor: pointer; font-family: 'Outfit', sans-serif; transition: all .3s;
-}
-.btn-del-prod:hover { background: rgba(231,76,60,.1); }
-
-.adm-empty {
-  text-align: center; padding: 3rem;
-  color: var(--texto-dim); font-size: .9rem; font-style: italic;
-  border: 1px dashed rgba(242,236,216,.06); border-radius: 4px;
-}
-
-/* ── Spinner de carga ── */
-.adm-loading {
-  display: flex; align-items: center; justify-content: center;
-  gap: .8rem; padding: 3rem;
-  color: var(--texto-dim); font-size: .9rem;
-}
-.adm-spinner {
-  width: 20px; height: 20px; border-radius: 50%;
-  border: 2px solid rgba(200,168,75,.2);
-  border-top-color: var(--oro);
-  animation: spin2 .8s linear infinite;
-}
-@keyframes spin2 { to { transform: rotate(360deg); } }
-
-/* ── Modal edición ── */
-.modal-overlay {
-  position: fixed; inset: 0; z-index: 1000;
-  background: rgba(0,0,0,.88); backdrop-filter: blur(4px);
-  display: flex; align-items: center; justify-content: center;
-  opacity: 0; visibility: hidden; transition: all .3s;
-}
-.modal-overlay.open { opacity: 1; visibility: visible; }
-.modal-card {
-  background: var(--negro3);
-  border: 1px solid rgba(200,168,75,.25);
-  border-radius: 6px; padding: 2.5rem;
-  width: min(560px, 92vw); max-height: 90vh; overflow-y: auto;
-}
-.modal-title {
-  font-family: 'Cormorant Garamond', serif;
-  font-size: 1.5rem; font-weight: 700; margin-bottom: 1.8rem;
-}
-.modal-title em { font-style: italic; color: var(--oro); }
+/* ── Modal ── */
+.modal-overlay { position:fixed; inset:0; z-index:1000; background:rgba(0,0,0,.88); backdrop-filter:blur(4px); display:flex; align-items:center; justify-content:center; opacity:0; visibility:hidden; transition:all .3s; }
+.modal-overlay.open { opacity:1; visibility:visible; }
+.modal-card { background:var(--negro3); border:1px solid rgba(200,168,75,.25); border-radius:6px; padding:2.5rem; width:min(560px,92vw); max-height:90vh; overflow-y:auto; }
+.modal-title { font-family:'Cormorant Garamond',serif; font-size:1.5rem; font-weight:700; margin-bottom:1.8rem; }
+.modal-title em { font-style:italic; color:var(--oro); }
 
 /* ── Toast ── */
-.adm-toast {
-  position: fixed; top: 5rem; right: 2rem; z-index: 2000;
-  padding: .8rem 1.4rem;
-  background: var(--negro3); border: 1px solid rgba(200,168,75,.3);
-  border-radius: 3px; font-size: .85rem; color: var(--texto);
-  box-shadow: 0 8px 30px rgba(0,0,0,.5);
-  transform: translateX(130%); transition: transform .4s ease;
-  max-width: 340px;
-}
-.adm-toast.show { transform: translateX(0); }
-.adm-toast.ok  { border-color: rgba(46,204,113,.5); }
-.adm-toast.err { border-color: rgba(231,76,60,.5); }
+.adm-toast { position:fixed; top:5rem; right:2rem; z-index:2000; padding:.8rem 1.4rem; background:var(--negro3); border:1px solid rgba(200,168,75,.3); border-radius:3px; font-size:.85rem; color:var(--texto); box-shadow:0 8px 30px rgba(0,0,0,.5); transform:translateX(130%); transition:transform .4s ease; max-width:340px; }
+.adm-toast.show { transform:translateX(0); }
+.adm-toast.ok  { border-color:rgba(46,204,113,.5); }
+.adm-toast.err { border-color:rgba(231,76,60,.5); }
 
-/* ── Info box ── */
-.adm-info-box {
-  margin-top: 2.5rem; padding: 1.4rem 1.8rem;
-  background: rgba(200,168,75,.04); border: 1px dashed rgba(200,168,75,.2);
-  border-radius: 3px;
-}
-.adm-info-box p { font-size: .85rem; color: var(--texto-mid); line-height: 1.7; }
-.adm-info-box strong { color: var(--oro); }
+.adm-info-box { margin-top:2.5rem; padding:1.4rem 1.8rem; background:rgba(200,168,75,.04); border:1px dashed rgba(200,168,75,.2); border-radius:3px; }
+.adm-info-box p { font-size:.85rem; color:var(--texto-mid); line-height:1.7; }
+.adm-info-box strong { color:var(--oro); }
 
-/* ── Responsive ── */
-@media (max-width: 640px) {
-  .adm-form-grid    { grid-template-columns: 1fr; }
-  .admin-stats      { gap: 1rem; }
-  .adm-prod-row     { flex-wrap: wrap; }
-  .adm-prod-actions { width: 100%; justify-content: flex-end; }
-  .adm-prod-name    { white-space: normal; }
-  #adminMain        { padding: 1.5rem 4% 4rem; }
-  .modal-card       { padding: 1.8rem 1.4rem; }
+/* ── Separador ── */
+.adm-divider { border:none; border-top:1px solid rgba(242,236,216,.07); margin:3rem 0; }
+
+@media (max-width:640px) {
+  .adm-form-grid { grid-template-columns:1fr; }
+  .admin-stats { gap:1rem; }
+  .adm-prod-row { flex-wrap:wrap; }
+  .adm-prod-actions { width:100%; justify-content:flex-end; }
+  .adm-prod-name { white-space:normal; }
+  #adminMain { padding:1.5rem 4% 4rem; }
+  .modal-card { padding:1.8rem 1.4rem; }
+  .new-cat-row { flex-wrap:wrap; }
 }
 </style>
 </head>
 <body>
 
-<!-- ── Toast ── -->
 <div id="adm-toast" class="adm-toast"></div>
 
-<!-- ══════ LOGIN OVERLAY ══════ -->
+<!-- ══════ LOGIN ══════ -->
 <div id="loginOverlay">
   <div class="login-card">
     <div class="login-logo">
@@ -317,8 +186,8 @@
     </div>
     <div class="login-title">Panel <em>Admin</em></div>
     <div class="login-sub">Ingresa con tu cuenta de administrador</div>
-    <form onsubmit="handleLogin(event)" class="login-fields">
-      <input type="email" id="emailInput" placeholder="Email del administrador" required autocomplete="email">
+    <form onsubmit="handleLogin(event)">
+      <input type="email"    id="emailInput"    placeholder="Email"      required autocomplete="email">
       <input type="password" id="passwordInput" placeholder="Contraseña" required autocomplete="current-password">
       <button type="submit" class="btn-login" id="btnLogin">Ingresar al Panel</button>
       <div id="loginError" class="login-error adm-hidden"></div>
@@ -355,25 +224,29 @@
   <div class="adm-form-card" id="addFormSection">
     <form id="addForm" onsubmit="handleAdd(event)">
       <div class="adm-form-grid">
+
         <div class="adm-fgroup">
           <label>Nombre del Producto *</label>
           <input type="text" name="name" placeholder="Ej: Guitarra Acústica BARRT" required>
         </div>
+
+        <!-- Categoría con creación inline -->
         <div class="adm-fgroup">
           <label>Categoría *</label>
-          <select name="category" required>
-            <option value="guitarra">Guitarras</option>
-            <option value="bateria">Baterías</option>
-            <option value="teclado">Pianos / Teclados</option>
-            <option value="viento">Vientos</option>
-            <option value="sonido">Sonido / Consolas</option>
-            <option value="accesorios">Accesorios</option>
+          <select name="category" id="addCatSel" required onchange="handleCatChange('add')">
+            <option value="" disabled selected>Cargando categorías…</option>
           </select>
+          <div id="addNewCatRow" class="new-cat-row adm-hidden">
+            <input type="text" id="addNewCatInput" placeholder="Nombre de la nueva categoría">
+            <button type="button" class="btn-create-cat" onclick="createAndSelect('add')">+ Crear</button>
+          </div>
         </div>
+
         <div class="adm-fgroup">
-          <label>Precio en S/ (0 = mostrar "Consultar precio")</label>
+          <label>Precio en S/ (0 = "Consultar precio")</label>
           <input type="number" name="price" placeholder="0" min="0" value="0" step="0.01">
         </div>
+
         <div class="adm-fgroup">
           <label>Etiqueta</label>
           <select name="tag">
@@ -382,23 +255,26 @@
             <option value="Nuevo">Nuevo</option>
           </select>
         </div>
+
         <div class="adm-fgroup adm-form-full">
           <label>Descripción (opcional)</label>
           <textarea name="description" placeholder="Descripción del producto..."></textarea>
         </div>
+
         <div class="adm-fgroup adm-form-full">
           <label>URL o Ruta de Imagen (opcional)</label>
           <input type="text" name="image" placeholder="images/foto.png  ó  https://...">
         </div>
+
       </div>
       <div class="adm-form-actions">
-        <button type="submit"  class="btn-adm-primary" id="btnAdd">+ Añadir Producto</button>
-        <button type="reset"   class="btn-adm-secondary" onclick="resetPrice()">Limpiar</button>
+        <button type="submit" class="btn-adm-primary" id="btnAdd">+ Añadir Producto</button>
+        <button type="reset"  class="btn-adm-secondary" onclick="resetPrice()">Limpiar</button>
       </div>
     </form>
   </div>
 
-  <!-- ── Gestión ── -->
+  <!-- ── Gestión productos ── -->
   <div class="adm-section-header" style="margin-top:1rem">
     <h2 class="adm-section-title">Catálogo de <em>Productos</em></h2>
     <div class="adm-toolbar">
@@ -407,31 +283,32 @@
     </div>
   </div>
 
-  <!-- Filtros -->
-  <div class="filters" style="margin-bottom:1.4rem">
+  <div class="filters" id="adminFilters" style="margin-bottom:1.4rem">
     <button class="ftab on" onclick="filtrarAdmin(this,'todos')">Todos</button>
-    <button class="ftab"    onclick="filtrarAdmin(this,'guitarra')">Guitarras</button>
-    <button class="ftab"    onclick="filtrarAdmin(this,'bateria')">Baterías</button>
-    <button class="ftab"    onclick="filtrarAdmin(this,'teclado')">Pianos/Teclados</button>
-    <button class="ftab"    onclick="filtrarAdmin(this,'viento')">Vientos</button>
-    <button class="ftab"    onclick="filtrarAdmin(this,'sonido')">Sonido/Consolas</button>
-    <button class="ftab"    onclick="filtrarAdmin(this,'accesorios')">Accesorios</button>
   </div>
 
   <div class="admin-prod-list" id="adminProductList">
-    <div class="adm-loading">
-      <div class="adm-spinner"></div> Cargando productos...
-    </div>
+    <div class="adm-loading"><div class="adm-spinner"></div> Cargando productos...</div>
   </div>
 
-  <div class="adm-info-box" style="margin-top:2.5rem">
+  <!-- ── Gestión categorías ── -->
+  <hr class="adm-divider">
+
+  <div class="adm-section-header">
+    <h2 class="adm-section-title">Gestionar <em>Categorías</em></h2>
+  </div>
+
+  <div class="cat-list" id="catList"></div>
+
+  <div class="adm-info-box">
     <p>
-      <strong>Los cambios son inmediatos.</strong>
-      Todo lo que edites aquí se guarda en Supabase y los clientes verán los cambios en segundos,
-      sin necesidad de tocar archivos ni hacer redeploy.
+      <strong>Cambios en tiempo real.</strong>
+      Todo lo que edites se guarda en Supabase y los clientes ven los cambios al instante.
       Usa <strong>⬆ Cargar productos iniciales</strong> la primera vez si la tabla está vacía.
+      No puedes eliminar una categoría si tiene productos asignados.
     </p>
   </div>
+
 </main>
 
 <!-- ══════ MODAL EDICIÓN ══════ -->
@@ -440,25 +317,29 @@
     <div class="modal-title">Editar <em>Producto</em></div>
     <form id="editForm" onsubmit="handleEdit(event)">
       <div class="adm-form-grid">
+
         <div class="adm-fgroup">
           <label>Nombre *</label>
           <input type="text" id="editName" required>
         </div>
+
+        <!-- Categoría con creación inline -->
         <div class="adm-fgroup">
           <label>Categoría *</label>
-          <select id="editCategory">
-            <option value="guitarra">Guitarras</option>
-            <option value="bateria">Baterías</option>
-            <option value="teclado">Pianos / Teclados</option>
-            <option value="viento">Vientos</option>
-            <option value="sonido">Sonido / Consolas</option>
-            <option value="accesorios">Accesorios</option>
+          <select id="editCatSel" onchange="handleCatChange('edit')">
+            <option value="" disabled>Selecciona...</option>
           </select>
+          <div id="editNewCatRow" class="new-cat-row adm-hidden">
+            <input type="text" id="editNewCatInput" placeholder="Nombre de la nueva categoría">
+            <button type="button" class="btn-create-cat" onclick="createAndSelect('edit')">+ Crear</button>
+          </div>
         </div>
+
         <div class="adm-fgroup">
           <label>Precio en S/ (0 = "Consultar")</label>
           <input type="number" id="editPrice" min="0" step="0.01">
         </div>
+
         <div class="adm-fgroup">
           <label>Etiqueta</label>
           <select id="editTag">
@@ -467,48 +348,41 @@
             <option value="Nuevo">Nuevo</option>
           </select>
         </div>
+
         <div class="adm-fgroup adm-form-full">
           <label>Descripción</label>
           <textarea id="editDescription" rows="3"></textarea>
         </div>
+
         <div class="adm-fgroup adm-form-full">
           <label>URL o Ruta de Imagen</label>
           <input type="text" id="editImage" placeholder="images/foto.png  ó  https://...">
         </div>
+
       </div>
       <div class="adm-form-actions" style="margin-top:.5rem">
-        <button type="submit"  class="btn-adm-primary" id="btnEdit">Guardar Cambios</button>
-        <button type="button"  class="btn-adm-secondary" onclick="closeModal()">Cancelar</button>
+        <button type="submit" class="btn-adm-primary" id="btnEdit">Guardar Cambios</button>
+        <button type="button" class="btn-adm-secondary" onclick="closeModal()">Cancelar</button>
       </div>
     </form>
   </div>
 </div>
 
-<!-- Supabase CDN + config -->
+<!-- Supabase SDK + config -->
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <script src="supabase-config.js"></script>
 <script>
 /* ══════════════════════════════════════════
    Panel Admin — Casa Musical Talentos
    Auth: Supabase (email + contraseña)
-   Acceso: Supabase → Authentication → Users
 ══════════════════════════════════════════ */
 
-const CAT_NAMES = {
-  guitarra:   'Guitarra',
-  bateria:    'Batería',
-  teclado:    'Piano/Teclado',
-  viento:     'Viento',
-  sonido:     'Sonido',
-  accesorios: 'Accesorios'
-};
-
-let sb          = null;
-let products    = [];
-let editingId   = null;
+let sb           = null;
+let products     = [];
+let categories   = [];
+let editingId    = null;
 let activeFilter = 'todos';
 
-/* ── Init Supabase ── */
 function initSB() {
   if (!sb) sb = supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
   return sb;
@@ -519,29 +393,27 @@ function initSB() {
 ══════════════════════════════════════════ */
 async function handleLogin(e) {
   e.preventDefault();
-  const btn  = document.getElementById('btnLogin');
+  const btn   = document.getElementById('btnLogin');
   const errEl = document.getElementById('loginError');
-  const email = document.getElementById('emailInput').value.trim();
-  const pwd   = document.getElementById('passwordInput').value;
-
-  btn.disabled    = true;
-  btn.textContent = 'Verificando...';
+  btn.disabled = true; btn.textContent = 'Verificando...';
   errEl.classList.add('adm-hidden');
 
-  const { error } = await initSB().auth.signInWithPassword({ email, password: pwd });
+  const { error } = await initSB().auth.signInWithPassword({
+    email:    document.getElementById('emailInput').value.trim(),
+    password: document.getElementById('passwordInput').value,
+  });
 
   if (error) {
     errEl.textContent = 'Email o contraseña incorrectos.';
     errEl.classList.remove('adm-hidden');
-    btn.disabled    = false;
-    btn.textContent = 'Ingresar al Panel';
+    btn.disabled = false; btn.textContent = 'Ingresar al Panel';
   } else {
     showAdmin();
   }
 }
 
 async function logout() {
-  if (!confirm('¿Cerrar sesión del panel admin?')) return;
+  if (!confirm('¿Cerrar sesión?')) return;
   await initSB().auth.signOut();
   location.reload();
 }
@@ -551,31 +423,163 @@ async function checkSession() {
   if (session) showAdmin();
 }
 
-function showAdmin() {
+async function showAdmin() {
   document.getElementById('loginOverlay').classList.add('adm-hidden');
   document.getElementById('adminNav').classList.remove('adm-hidden');
   document.getElementById('statsBar').classList.remove('adm-hidden');
   document.getElementById('adminMain').classList.remove('adm-hidden');
-  loadAndRender();
+  await loadCategories();
+  await loadAndRender();
 }
 
 /* ══════════════════════════════════════════
-   DATOS — Supabase
+   CATEGORÍAS
+══════════════════════════════════════════ */
+function toSlug(name) {
+  return name.trim().toLowerCase()
+    .normalize('NFD').replace(/[̀-ͯ]/g, '')
+    .replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
+}
+
+async function loadCategories() {
+  const { data, error } = await initSB()
+    .from('categories').select('*').order('id');
+
+  if (!error && data && data.length) {
+    categories = data;
+  } else {
+    /* Fallback hardcoded si aún no se ha corrido el SQL */
+    categories = [
+      { id: 1, name: 'Guitarras',         slug: 'guitarra'   },
+      { id: 2, name: 'Baterías',           slug: 'bateria'    },
+      { id: 3, name: 'Pianos / Teclados',  slug: 'teclado'    },
+      { id: 4, name: 'Vientos',            slug: 'viento'     },
+      { id: 5, name: 'Sonido / Consolas',  slug: 'sonido'     },
+      { id: 6, name: 'Accesorios',         slug: 'accesorios' },
+    ];
+  }
+  populateCatSelects();
+  renderCatList();
+  renderAdminFilters();
+}
+
+function populateCatSelects(addSelected, editSelected) {
+  populateCatSelect('addCatSel',  addSelected  || null);
+  populateCatSelect('editCatSel', editSelected || null);
+}
+
+function populateCatSelect(selId, selectedSlug) {
+  const sel = document.getElementById(selId);
+  if (!sel) return;
+  const prev = selectedSlug || (sel.value !== '__new__' ? sel.value : null);
+  sel.innerHTML =
+    categories.map(c => `<option value="${c.slug}">${c.name}</option>`).join('') +
+    `<option value="__new__">➕ Nueva categoría...</option>`;
+  if (prev) sel.value = prev;
+}
+
+function handleCatChange(prefix) {
+  const selId  = prefix === 'add' ? 'addCatSel' : 'editCatSel';
+  const rowId  = prefix + 'NewCatRow';
+  const sel    = document.getElementById(selId);
+  const row    = document.getElementById(rowId);
+  if (sel.value === '__new__') {
+    row.classList.remove('adm-hidden');
+    document.getElementById(prefix + 'NewCatInput').focus();
+  } else {
+    row.classList.add('adm-hidden');
+  }
+}
+
+async function createAndSelect(prefix) {
+  const selId   = prefix === 'add' ? 'addCatSel' : 'editCatSel';
+  const inputId = prefix + 'NewCatInput';
+  const rowId   = prefix + 'NewCatRow';
+  const name    = document.getElementById(inputId).value.trim();
+  if (!name) { toast('Escribe un nombre para la categoría', 'err'); return; }
+
+  const slug = toSlug(name);
+
+  /* Si ya existe, solo seleccionarla */
+  const existing = categories.find(c => c.slug === slug);
+  if (existing) {
+    populateCatSelect(selId, slug);
+    document.getElementById(rowId).classList.add('adm-hidden');
+    document.getElementById(inputId).value = '';
+    toast(`Categoría "${name}" ya existe — seleccionada`, 'ok');
+    return;
+  }
+
+  const { data, error } = await initSB()
+    .from('categories').insert([{ name, slug }]).select().single();
+
+  if (error) { toast('Error al crear categoría: ' + error.message, 'err'); return; }
+
+  categories.push(data);
+  populateCatSelects(prefix === 'add' ? slug : null, prefix === 'edit' ? slug : null);
+  renderCatList();
+  renderAdminFilters();
+
+  document.getElementById(rowId).classList.add('adm-hidden');
+  document.getElementById(inputId).value = '';
+  toast(`Categoría "${name}" creada`, 'ok');
+}
+
+async function deleteCategory(id, slug, name) {
+  if (products.some(p => p.category === slug)) {
+    toast(`No puedes eliminar "${name}" — hay productos que la usan`, 'err');
+    return;
+  }
+  if (!confirm(`¿Eliminar la categoría "${name}"?`)) return;
+  const { error } = await initSB().from('categories').delete().eq('id', id);
+  if (error) { toast('Error: ' + error.message, 'err'); return; }
+  categories = categories.filter(c => c.id !== id);
+  populateCatSelects();
+  renderCatList();
+  renderAdminFilters();
+  toast('Categoría eliminada', 'ok');
+}
+
+function renderCatList() {
+  const list = document.getElementById('catList');
+  if (!list) return;
+  if (!categories.length) {
+    list.innerHTML = '<div class="adm-empty">No hay categorías aún.</div>';
+    return;
+  }
+  list.innerHTML = categories.map(c => `
+    <div class="cat-row">
+      <span class="cat-slug">${c.slug}</span>
+      <span class="cat-name">${c.name}</span>
+      <button class="btn-del-prod" onclick="deleteCategory(${c.id},'${c.slug}','${c.name}')">Eliminar</button>
+    </div>
+  `).join('');
+}
+
+function renderAdminFilters() {
+  const bar = document.getElementById('adminFilters');
+  if (!bar) return;
+  bar.innerHTML =
+    `<button class="ftab on" onclick="filtrarAdmin(this,'todos')">Todos</button>` +
+    categories.map(c =>
+      `<button class="ftab" onclick="filtrarAdmin(this,'${c.slug}')">${c.name}</button>`
+    ).join('');
+}
+
+/* ══════════════════════════════════════════
+   PRODUCTOS — DATOS
 ══════════════════════════════════════════ */
 async function loadAndRender() {
   const list = document.getElementById('adminProductList');
   list.innerHTML = '<div class="adm-loading"><div class="adm-spinner"></div> Cargando...</div>';
 
   const { data, error } = await initSB()
-    .from('products')
-    .select('*')
-    .order('id', { ascending: true });
+    .from('products').select('*').order('id', { ascending: true });
 
   if (error) {
-    list.innerHTML = `<div class="adm-empty">Error al cargar: ${error.message}</div>`;
+    list.innerHTML = `<div class="adm-empty">Error: ${error.message}</div>`;
     return;
   }
-
   products = data || [];
   renderStats();
   renderList(activeFilter);
@@ -588,10 +592,15 @@ function renderStats() {
   const counts = {};
   products.forEach(p => { counts[p.category] = (counts[p.category] || 0) + 1; });
   let html = `<div class="stat-item"><strong>${products.length}</strong> Total productos</div>`;
-  for (const [cat, label] of Object.entries(CAT_NAMES)) {
-    if (counts[cat]) html += `<div class="stat-item"><strong>${counts[cat]}</strong> ${label}</div>`;
-  }
+  categories.forEach(c => {
+    if (counts[c.slug]) html += `<div class="stat-item"><strong>${counts[c.slug]}</strong> ${c.name}</div>`;
+  });
   document.getElementById('statsBar').innerHTML = html;
+}
+
+function getCatName(slug) {
+  const c = categories.find(x => x.slug === slug);
+  return c ? c.name : slug;
 }
 
 function renderList(filter = 'todos') {
@@ -618,7 +627,7 @@ function renderList(filter = 'todos') {
         <div class="adm-prod-info">
           <div class="adm-prod-name">${p.name}</div>
           <div class="adm-prod-meta">
-            <span class="adm-meta-cat">${CAT_NAMES[p.category] || p.category}</span>
+            <span class="adm-meta-cat">${getCatName(p.category)}</span>
             <span class="adm-meta-price">${priceText}</span>
             ${tagHtml}
           </div>
@@ -627,8 +636,7 @@ function renderList(filter = 'todos') {
           <button class="btn-edit-prod" onclick="openEdit(${p.id})">Editar</button>
           <button class="btn-del-prod"  onclick="deleteProduct(${p.id})">Eliminar</button>
         </div>
-      </div>
-    `;
+      </div>`;
   }).join('');
 }
 
@@ -638,28 +646,33 @@ function renderList(filter = 'todos') {
 async function handleAdd(e) {
   e.preventDefault();
   const btn = document.getElementById('btnAdd');
-  btn.disabled    = true;
-  btn.textContent = 'Guardando...';
+  btn.disabled = true; btn.textContent = 'Guardando...';
 
   const fd  = new FormData(e.target);
   const tag = fd.get('tag') || null;
+  const cat = document.getElementById('addCatSel').value;
+
+  if (!cat || cat === '__new__') {
+    toast('Selecciona o crea una categoría primero', 'err');
+    btn.disabled = false; btn.textContent = '+ Añadir Producto';
+    return;
+  }
 
   const { error } = await initSB().from('products').insert([{
     name:        fd.get('name').trim(),
-    category:    fd.get('category'),
+    category:    cat,
     price:       Number(fd.get('price')) || 0,
     description: fd.get('description').trim(),
     image:       fd.get('image').trim(),
     tag,
   }]);
 
-  btn.disabled    = false;
-  btn.textContent = '+ Añadir Producto';
-
+  btn.disabled = false; btn.textContent = '+ Añadir Producto';
   if (error) { toast('Error: ' + error.message, 'err'); return; }
 
   e.target.reset();
   document.querySelector('#addForm [name=price]').value = '0';
+  populateCatSelect('addCatSel', null);
   toast('Producto añadido correctamente', 'ok');
   await loadAndRender();
 }
@@ -668,13 +681,13 @@ function openEdit(id) {
   editingId = id;
   const p   = products.find(x => x.id === id);
   if (!p) return;
-
   document.getElementById('editName').value        = p.name        || '';
-  document.getElementById('editCategory').value    = p.category    || 'guitarra';
   document.getElementById('editPrice').value       = p.price       || 0;
   document.getElementById('editDescription').value = p.description || '';
   document.getElementById('editImage').value       = p.image       || '';
   document.getElementById('editTag').value         = p.tag         || '';
+  populateCatSelect('editCatSel', p.category);
+  document.getElementById('editNewCatRow').classList.add('adm-hidden');
   document.getElementById('editModal').classList.add('open');
   document.getElementById('editName').focus();
 }
@@ -682,28 +695,27 @@ function openEdit(id) {
 async function handleEdit(e) {
   e.preventDefault();
   if (editingId === null) return;
-
   const btn = document.getElementById('btnEdit');
-  btn.disabled    = true;
-  btn.textContent = 'Guardando...';
+  btn.disabled = true; btn.textContent = 'Guardando...';
+
+  const cat = document.getElementById('editCatSel').value;
+  if (!cat || cat === '__new__') {
+    toast('Selecciona o crea una categoría', 'err');
+    btn.disabled = false; btn.textContent = 'Guardar Cambios';
+    return;
+  }
 
   const tag = document.getElementById('editTag').value || null;
+  const { error } = await initSB().from('products').update({
+    name:        document.getElementById('editName').value.trim(),
+    category:    cat,
+    price:       Number(document.getElementById('editPrice').value) || 0,
+    description: document.getElementById('editDescription').value.trim(),
+    image:       document.getElementById('editImage').value.trim(),
+    tag,
+  }).eq('id', editingId);
 
-  const { error } = await initSB()
-    .from('products')
-    .update({
-      name:        document.getElementById('editName').value.trim(),
-      category:    document.getElementById('editCategory').value,
-      price:       Number(document.getElementById('editPrice').value) || 0,
-      description: document.getElementById('editDescription').value.trim(),
-      image:       document.getElementById('editImage').value.trim(),
-      tag,
-    })
-    .eq('id', editingId);
-
-  btn.disabled    = false;
-  btn.textContent = 'Guardar Cambios';
-
+  btn.disabled = false; btn.textContent = 'Guardar Cambios';
   if (error) { toast('Error: ' + error.message, 'err'); return; }
   closeModal();
   toast('Producto actualizado', 'ok');
@@ -713,7 +725,6 @@ async function handleEdit(e) {
 async function deleteProduct(id) {
   const p = products.find(x => x.id === id);
   if (!p || !confirm(`¿Eliminar "${p.name}"?\n\nEsta acción no se puede deshacer.`)) return;
-
   const { error } = await initSB().from('products').delete().eq('id', id);
   if (error) { toast('Error: ' + error.message, 'err'); return; }
   toast('Producto eliminado', 'ok');
@@ -736,7 +747,7 @@ function closeModalOutside(e) {
 ══════════════════════════════════════════ */
 function filtrarAdmin(btn, cat) {
   activeFilter = cat;
-  document.querySelectorAll('.ftab').forEach(t => t.classList.remove('on'));
+  document.querySelectorAll('#adminFilters .ftab').forEach(t => t.classList.remove('on'));
   btn.classList.add('on');
   renderList(cat);
 }
@@ -762,30 +773,29 @@ function exportJSON() {
   const a     = Object.assign(document.createElement('a'), {
     href: URL.createObjectURL(blob), download: 'products-backup.json'
   });
-  a.click();
-  URL.revokeObjectURL(a.href);
-  toast('Backup descargado como products-backup.json', 'ok');
+  a.click(); URL.revokeObjectURL(a.href);
+  toast('Backup descargado', 'ok');
 }
 
 async function seedFromJSON() {
-  if (products.length > 0 && !confirm(`La tabla ya tiene ${products.length} productos.\n¿Deseas AÑADIR también los productos iniciales del archivo products.json?`)) return;
-  if (products.length === 0 && !confirm('¿Cargar los productos iniciales desde products.json?')) return;
+  const msg = products.length > 0
+    ? `La tabla ya tiene ${products.length} productos. ¿Añadir también los del archivo products.json?`
+    : '¿Cargar los productos iniciales desde products.json?';
+  if (!confirm(msg)) return;
 
   try {
     const res  = await fetch('products.json');
     const json = await res.json();
-    const rows = json.map((p, i) => ({
+    const rows = json.map(p => ({
       name:        p.name        || '',
-      category:    p.category    || 'guitarra',
+      category:    p.category    || categories[0]?.slug || 'guitarra',
       price:       Number(p.price) || 0,
       description: p.description || '',
       image:       p.image       || '',
       tag:         p.tag         || null,
     }));
-
     const { error } = await initSB().from('products').insert(rows);
     if (error) throw error;
-
     toast(`${rows.length} productos cargados en Supabase`, 'ok');
     await loadAndRender();
   } catch (err) {

@@ -42,14 +42,22 @@
     <p class="sec-sub">Encuentra el instrumento perfecto para ti. Todos los precios están en Soles (S/.). Consulta disponibilidad directamente por WhatsApp.</p>
   </div>
 
-  <div class="filters reveal">
+  <!-- Buscador -->
+  <div class="catalog-search reveal">
+    <span class="catalog-search-icon">🔍</span>
+    <input
+      type="search"
+      id="catalogSearch"
+      class="catalog-search-input"
+      placeholder="Buscar instrumentos por nombre o descripción..."
+      oninput="handleSearch(this.value)"
+      autocomplete="off"
+    >
+  </div>
+
+  <!-- Filtros generados dinámicamente desde Supabase -->
+  <div class="filters reveal" id="filterBar">
     <button class="ftab on" onclick="filtrar(this,'todos')">Todos</button>
-    <button class="ftab" onclick="filtrar(this,'guitarra')">Guitarras</button>
-    <button class="ftab" onclick="filtrar(this,'bateria')">Baterías</button>
-    <button class="ftab" onclick="filtrar(this,'teclado')">Pianos/Teclados</button>
-    <button class="ftab" onclick="filtrar(this,'viento')">Vientos</button>
-    <button class="ftab" onclick="filtrar(this,'sonido')">Sonido/Consolas</button>
-    <button class="ftab" onclick="filtrar(this,'accesorios')">Accesorios</button>
   </div>
 
   <div class="prod-grid reveal" id="grid">
