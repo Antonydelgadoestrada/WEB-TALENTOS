@@ -107,6 +107,23 @@
 }
 .btn-create-cat:hover { background:var(--oro-claro); }
 
+/* ── Buscador admin ── */
+.adm-search-wrap {
+  position:relative; margin-bottom:1rem;
+}
+.adm-search-icon {
+  position:absolute; left:.9rem; top:50%; transform:translateY(-50%);
+  font-size:.9rem; color:var(--texto-dim); pointer-events:none;
+}
+.adm-search-input {
+  width:100%; padding:.75rem 1rem .75rem 2.5rem;
+  background:var(--negro3); border:1px solid rgba(242,236,216,.1);
+  color:var(--texto); font-family:'Outfit',sans-serif; font-size:.88rem;
+  border-radius:2px; outline:none; transition:border-color .3s;
+}
+.adm-search-input:focus { border-color:var(--oro); box-shadow:0 0 0 3px rgba(200,168,75,.08); }
+.adm-search-input::placeholder { color:var(--texto-dim); }
+
 /* ── Toolbar ── */
 .adm-toolbar { display:flex; gap:.6rem; flex-wrap:wrap; align-items:center; }
 
@@ -348,6 +365,15 @@
     </div>
   </div>
 
+  <!-- Buscador -->
+  <div class="adm-search-wrap">
+    <span class="adm-search-icon">🔍</span>
+    <input type="search" id="adminSearch" class="adm-search-input"
+           placeholder="Buscar por nombre, categoría o descripción..."
+           oninput="handleAdminSearch(this.value)" autocomplete="off">
+  </div>
+
+  <!-- Filtros por categoría -->
   <div class="filters" id="adminFilters" style="margin-bottom:1.4rem">
     <button class="ftab on" onclick="filtrarAdmin(this,'todos')">Todos</button>
   </div>
@@ -448,11 +474,12 @@
    Auth: Supabase (email + contraseña)
 ══════════════════════════════════════════ */
 
-let sb           = null;
-let products     = [];
-let categories   = [];
-let editingId    = null;
-let activeFilter = 'todos';
+let sb              = null;
+let products        = [];
+let categories      = [];
+let editingId       = null;
+let activeFilter    = 'todos';
+let adminSearch     = '';
 
 function initSB() {
   if (!sb) sb = supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
@@ -674,12 +701,28 @@ function getCatName(slug) {
   return c ? c.name : slug;
 }
 
+function handleAdminSearch(value) {
+  adminSearch = value.trim().toLowerCase();
+  renderList(activeFilter);
+}
+
 function renderList(filter = 'todos') {
-  const list  = document.getElementById('adminProductList');
-  const items = filter === 'todos' ? products : products.filter(p => p.category === filter);
+  const list = document.getElementById('adminProductList');
+
+  let items = filter === 'todos' ? products : products.filter(p => p.category === filter);
+
+  if (adminSearch) {
+    items = items.filter(p =>
+      p.name.toLowerCase().includes(adminSearch) ||
+      (p.description || '').toLowerCase().includes(adminSearch) ||
+      getCatName(p.category).toLowerCase().includes(adminSearch)
+    );
+  }
 
   if (!items.length) {
-    list.innerHTML = '<div class="adm-empty">No hay productos en esta categoría.</div>';
+    list.innerHTML = adminSearch
+      ? `<div class="adm-empty">No se encontraron productos para "<strong style="color:var(--oro)">${adminSearch}</strong>"</div>`
+      : '<div class="adm-empty">No hay productos en esta categoría.</div>';
     return;
   }
 
