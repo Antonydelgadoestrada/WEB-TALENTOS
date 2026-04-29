@@ -1,0 +1,784 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Panel Admin — Casa Musical Talentos</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,700&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+<style>
+/* ── Utilidad ── */
+.adm-hidden { display: none !important; }
+
+/* ── Login overlay ── */
+#loginOverlay {
+  position: fixed; inset: 0; z-index: 9999;
+  background: var(--negro);
+  display: flex; align-items: center; justify-content: center;
+}
+.login-card {
+  background: var(--negro3);
+  border: 1px solid rgba(200,168,75,.25);
+  border-radius: 6px; padding: 3rem 2.5rem;
+  width: min(420px, 90vw); text-align: center;
+}
+.login-logo { display: flex; flex-direction: column; align-items: center; margin-bottom: 1.8rem; }
+.login-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.9rem; font-weight: 700; margin-bottom: .4rem;
+}
+.login-title em { font-style: italic; color: var(--oro); }
+.login-sub { font-size: .82rem; color: var(--texto-mid); margin-bottom: 2rem; }
+.login-card input[type=password] {
+  width: 100%; padding: .9rem 1rem;
+  background: var(--negro4); border: 1px solid rgba(200,168,75,.2);
+  color: var(--texto); font-family: 'Outfit', sans-serif; font-size: .95rem;
+  border-radius: 2px; outline: none; margin-bottom: 1rem;
+  transition: border-color .3s;
+}
+.login-card input[type=password]:focus { border-color: var(--oro); }
+.btn-login {
+  width: 100%; padding: .95rem;
+  background: var(--oro); color: var(--negro);
+  font-weight: 700; font-size: .88rem; letter-spacing: .08em; text-transform: uppercase;
+  border: none; border-radius: 2px; cursor: pointer; font-family: 'Outfit', sans-serif;
+  transition: all .3s;
+}
+.btn-login:hover { background: var(--oro-claro); }
+.login-error { color: #e74c3c; font-size: .82rem; margin-top: .8rem; }
+
+/* ── Admin nav ── */
+.admin-badge {
+  font-size: .62rem; letter-spacing: .15em; text-transform: uppercase;
+  background: var(--oro); color: var(--negro);
+  padding: .2rem .6rem; border-radius: 2px; font-weight: 700;
+}
+.btn-nav-site {
+  padding: .45rem 1rem;
+  background: transparent; color: var(--texto-mid);
+  border: 1px solid rgba(242,236,216,.12); border-radius: 2px;
+  font-size: .78rem; cursor: pointer; font-family: 'Outfit', sans-serif;
+  text-decoration: none; display: flex; align-items: center;
+  transition: all .3s;
+}
+.btn-nav-site:hover { border-color: var(--oro); color: var(--oro); }
+.btn-logout {
+  padding: .45rem 1rem;
+  background: transparent; color: var(--texto-mid);
+  border: 1px solid rgba(242,236,216,.12); border-radius: 2px;
+  font-size: .78rem; cursor: pointer; font-family: 'Outfit', sans-serif;
+  transition: all .3s;
+}
+.btn-logout:hover { border-color: rgba(231,76,60,.5); color: #e74c3c; }
+
+/* ── Stats bar ── */
+.admin-stats {
+  display: flex; gap: 2rem; flex-wrap: wrap; align-items: center;
+  padding: .85rem 5%;
+  background: var(--negro4);
+  border-bottom: 1px solid rgba(200,168,75,.08);
+  margin-top: 65px;
+}
+.stat-item { display: flex; align-items: center; gap: .45rem; font-size: .8rem; color: var(--texto-mid); }
+.stat-item strong { color: var(--oro); font-size: 1.05rem; font-family: 'Cormorant Garamond', serif; font-weight: 700; }
+
+/* ── Layout principal ── */
+#adminMain { padding: 2.5rem 5% 6rem; }
+
+/* ── Títulos de sección ── */
+.adm-section-header {
+  display: flex; justify-content: space-between; align-items: center;
+  margin-bottom: 1.5rem; flex-wrap: wrap; gap: 1rem;
+}
+.adm-section-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.6rem; font-weight: 700;
+}
+.adm-section-title em { font-style: italic; color: var(--oro); }
+
+/* ── Botones ── */
+.btn-adm-primary {
+  padding: .8rem 1.8rem;
+  background: var(--oro); color: var(--negro);
+  font-weight: 700; font-size: .82rem; letter-spacing: .06em; text-transform: uppercase;
+  border: none; border-radius: 2px; cursor: pointer;
+  font-family: 'Outfit', sans-serif; transition: all .3s;
+}
+.btn-adm-primary:hover { background: var(--oro-claro); transform: translateY(-1px); }
+
+.btn-adm-secondary {
+  padding: .8rem 1.4rem;
+  background: transparent; color: var(--texto-mid);
+  border: 1px solid rgba(242,236,216,.15); border-radius: 2px; cursor: pointer;
+  font-size: .82rem; font-family: 'Outfit', sans-serif; transition: all .3s;
+}
+.btn-adm-secondary:hover { border-color: var(--oro); color: var(--oro); }
+
+.btn-toggle-add {
+  padding: .55rem 1.2rem;
+  background: rgba(200,168,75,.1); color: var(--oro);
+  border: 1px solid rgba(200,168,75,.3); border-radius: 2px; cursor: pointer;
+  font-weight: 600; font-size: .8rem; letter-spacing: .06em; text-transform: uppercase;
+  font-family: 'Outfit', sans-serif; transition: all .3s;
+}
+.btn-toggle-add:hover { background: rgba(200,168,75,.18); }
+
+.btn-adm-export {
+  padding: .45rem 1rem;
+  border: 1px solid rgba(200,168,75,.3); background: rgba(200,168,75,.06);
+  color: var(--oro); font-size: .78rem; border-radius: 2px;
+  cursor: pointer; font-family: 'Outfit', sans-serif; transition: all .3s;
+}
+.btn-adm-export:hover { background: rgba(200,168,75,.14); }
+
+.btn-adm-danger {
+  padding: .45rem 1rem;
+  border: 1px solid rgba(231,76,60,.3); background: transparent;
+  color: #e74c3c; font-size: .78rem; border-radius: 2px;
+  cursor: pointer; font-family: 'Outfit', sans-serif; transition: all .3s;
+}
+.btn-adm-danger:hover { background: rgba(231,76,60,.08); }
+
+/* ── Formulario Add/Edit ── */
+.adm-form-card {
+  background: var(--negro3);
+  border: 1px solid rgba(200,168,75,.15);
+  border-radius: 4px; padding: 2rem;
+  margin-bottom: 2.5rem;
+}
+.adm-form-grid {
+  display: grid; grid-template-columns: 1fr 1fr;
+  gap: 1rem; margin-bottom: 1.2rem;
+}
+.adm-form-full { grid-column: 1 / -1; }
+.adm-fgroup { display: flex; flex-direction: column; gap: .4rem; }
+.adm-fgroup label {
+  font-size: .7rem; text-transform: uppercase; letter-spacing: .08em; color: var(--texto-dim);
+}
+.adm-fgroup input,
+.adm-fgroup select,
+.adm-fgroup textarea {
+  background: var(--negro4); border: 1px solid rgba(242,236,216,.1);
+  color: var(--texto); padding: .75rem .9rem;
+  font-family: 'Outfit', sans-serif; font-size: .88rem;
+  border-radius: 2px; outline: none; transition: border-color .3s;
+}
+.adm-fgroup input:focus,
+.adm-fgroup select:focus,
+.adm-fgroup textarea:focus { border-color: var(--oro); }
+.adm-fgroup select option { background: var(--negro3); }
+.adm-fgroup textarea { min-height: 80px; resize: vertical; }
+.adm-form-actions { display: flex; gap: .8rem; flex-wrap: wrap; }
+
+/* ── Toolbar ── */
+.adm-toolbar {
+  display: flex; gap: .6rem; flex-wrap: wrap; align-items: center;
+}
+
+/* ── Lista de productos ── */
+.admin-prod-list { display: flex; flex-direction: column; gap: .55rem; }
+
+.adm-prod-row {
+  display: flex; align-items: center; gap: 1.2rem;
+  background: var(--negro3); border: 1px solid rgba(242,236,216,.06);
+  border-radius: 4px; padding: 1rem 1.2rem;
+  transition: border-color .3s;
+}
+.adm-prod-row:hover { border-color: rgba(200,168,75,.2); }
+
+.adm-prod-thumb {
+  width: 56px; height: 56px; flex-shrink: 0;
+  background: var(--negro4); border-radius: 3px; overflow: hidden;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 1.6rem; color: var(--oro);
+}
+.adm-prod-thumb img { width: 100%; height: 100%; object-fit: cover; }
+
+.adm-prod-info { flex: 1; min-width: 0; }
+
+.adm-prod-name {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.05rem; font-weight: 600; margin-bottom: .25rem;
+  white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+}
+.adm-prod-meta {
+  display: flex; gap: .8rem; align-items: center; flex-wrap: wrap;
+}
+.adm-meta-cat {
+  font-size: .68rem; letter-spacing: .1em; text-transform: uppercase; color: var(--oro);
+}
+.adm-meta-price {
+  font-size: .85rem; color: var(--texto-mid);
+  font-family: 'Cormorant Garamond', serif; font-weight: 600;
+}
+.adm-meta-tag {
+  font-size: .62rem; padding: .15rem .5rem;
+  background: var(--oro); color: var(--negro);
+  border-radius: 1px; font-weight: 700; letter-spacing: .06em; text-transform: uppercase;
+}
+.adm-meta-tag.new { background: #2ecc71; color: #fff; }
+
+.adm-prod-actions { display: flex; gap: .5rem; flex-shrink: 0; }
+
+.btn-edit-prod {
+  padding: .4rem .9rem;
+  border: 1px solid rgba(200,168,75,.3); background: transparent;
+  color: var(--oro); font-size: .75rem; border-radius: 2px;
+  cursor: pointer; font-family: 'Outfit', sans-serif; transition: all .3s;
+}
+.btn-edit-prod:hover { background: rgba(200,168,75,.1); }
+
+.btn-del-prod {
+  padding: .4rem .9rem;
+  border: 1px solid rgba(231,76,60,.25); background: transparent;
+  color: #e74c3c; font-size: .75rem; border-radius: 2px;
+  cursor: pointer; font-family: 'Outfit', sans-serif; transition: all .3s;
+}
+.btn-del-prod:hover { background: rgba(231,76,60,.1); }
+
+.adm-empty {
+  text-align: center; padding: 3rem;
+  color: var(--texto-dim); font-size: .9rem; font-style: italic;
+  border: 1px dashed rgba(242,236,216,.06); border-radius: 4px;
+}
+
+/* ── Modal edición ── */
+.modal-overlay {
+  position: fixed; inset: 0; z-index: 1000;
+  background: rgba(0,0,0,.88); backdrop-filter: blur(4px);
+  display: flex; align-items: center; justify-content: center;
+  opacity: 0; visibility: hidden; transition: all .3s;
+}
+.modal-overlay.open { opacity: 1; visibility: visible; }
+.modal-card {
+  background: var(--negro3);
+  border: 1px solid rgba(200,168,75,.25);
+  border-radius: 6px; padding: 2.5rem;
+  width: min(560px, 92vw); max-height: 90vh; overflow-y: auto;
+}
+.modal-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.5rem; font-weight: 700; margin-bottom: 1.8rem;
+}
+.modal-title em { font-style: italic; color: var(--oro); }
+
+/* ── Notificación toast ── */
+.adm-toast {
+  position: fixed; top: 5rem; right: 2rem; z-index: 2000;
+  padding: .8rem 1.4rem;
+  background: var(--negro3); border: 1px solid rgba(200,168,75,.3);
+  border-radius: 3px; font-size: .85rem; color: var(--texto);
+  box-shadow: 0 8px 30px rgba(0,0,0,.5);
+  transform: translateX(130%); transition: transform .4s ease;
+  max-width: 320px;
+}
+.adm-toast.show { transform: translateX(0); }
+.adm-toast.ok    { border-color: rgba(46,204,113,.5); }
+.adm-toast.err   { border-color: rgba(231,76,60,.5); }
+
+/* ── Info box ── */
+.adm-info-box {
+  margin-top: 2.5rem; padding: 1.4rem 1.8rem;
+  background: rgba(200,168,75,.04); border: 1px dashed rgba(200,168,75,.2);
+  border-radius: 3px;
+}
+.adm-info-box p { font-size: .85rem; color: var(--texto-mid); line-height: 1.7; }
+.adm-info-box strong { color: var(--oro); }
+.adm-info-box code {
+  background: rgba(200,168,75,.1); padding: .1rem .4rem;
+  border-radius: 2px; font-family: monospace; font-size: .82rem;
+}
+
+/* ── Responsive ── */
+@media (max-width: 640px) {
+  .adm-form-grid      { grid-template-columns: 1fr; }
+  .admin-stats        { gap: 1rem; }
+  .adm-prod-row       { flex-wrap: wrap; }
+  .adm-prod-actions   { width: 100%; justify-content: flex-end; }
+  .adm-prod-name      { white-space: normal; }
+  #adminMain          { padding: 1.5rem 4% 4rem; }
+}
+</style>
+</head>
+<body>
+
+<!-- ── Notificación toast ── -->
+<div id="adm-toast" class="adm-toast"></div>
+
+<!-- ══════ LOGIN OVERLAY ══════ -->
+<div id="loginOverlay">
+  <div class="login-card">
+    <div class="login-logo">
+      <span class="logo-main">Talentos <span>IM</span></span>
+      <span class="logo-sub">Instrument Music · Sullana, Piura</span>
+    </div>
+    <div class="login-title">Panel <em>Admin</em></div>
+    <div class="login-sub">Ingresa la contraseña para gestionar el catálogo de productos</div>
+    <form onsubmit="handleLogin(event)">
+      <input type="password" id="passwordInput" placeholder="Contraseña" autocomplete="current-password">
+      <button type="submit" class="btn-login">Ingresar al Panel</button>
+      <div id="loginError" class="login-error adm-hidden">Contraseña incorrecta. Inténtalo de nuevo.</div>
+    </form>
+  </div>
+</div>
+
+<!-- ══════ NAV ══════ -->
+<nav id="adminNav" class="adm-hidden">
+  <div class="logo-wrap">
+    <span class="logo-main">Talentos <span>IM</span></span>
+    <span class="logo-sub">Instrument Music · Sullana, Piura</span>
+  </div>
+  <div style="display:flex;align-items:center;gap:.8rem;flex-wrap:wrap">
+    <span class="admin-badge">Admin</span>
+    <a href="catalog.html" class="btn-nav-site" target="_blank">↗ Ver Catálogo</a>
+    <a href="index.html"   class="btn-nav-site">← Ir al Sitio</a>
+    <button class="btn-logout" onclick="logout()">Cerrar Sesión</button>
+  </div>
+</nav>
+
+<!-- ══════ STATS ══════ -->
+<div id="statsBar" class="admin-stats adm-hidden"></div>
+
+<!-- ══════ MAIN ══════ -->
+<main id="adminMain" class="adm-hidden">
+
+  <!-- ── Añadir producto ── -->
+  <div class="adm-section-header">
+    <h2 class="adm-section-title">Añadir <em>Producto</em></h2>
+    <button class="btn-toggle-add" onclick="toggleAddForm()" id="btnToggleAdd">− Ocultar formulario</button>
+  </div>
+
+  <div class="adm-form-card" id="addFormSection">
+    <form id="addForm" onsubmit="handleAdd(event)">
+      <div class="adm-form-grid">
+        <div class="adm-fgroup">
+          <label>Nombre del Producto *</label>
+          <input type="text" name="name" placeholder="Ej: Guitarra Acústica BARRT" required>
+        </div>
+        <div class="adm-fgroup">
+          <label>Categoría *</label>
+          <select name="category" required>
+            <option value="guitarra">Guitarras</option>
+            <option value="bateria">Baterías</option>
+            <option value="teclado">Pianos / Teclados</option>
+            <option value="viento">Vientos</option>
+            <option value="sonido">Sonido / Consolas</option>
+            <option value="accesorios">Accesorios</option>
+          </select>
+        </div>
+        <div class="adm-fgroup">
+          <label>Precio en S/ (dejar en 0 para mostrar "Consultar")</label>
+          <input type="number" name="price" placeholder="0" min="0" value="0" step="0.01">
+        </div>
+        <div class="adm-fgroup">
+          <label>Etiqueta</label>
+          <select name="tag">
+            <option value="">Sin etiqueta</option>
+            <option value="Popular">Popular</option>
+            <option value="Nuevo">Nuevo</option>
+          </select>
+        </div>
+        <div class="adm-fgroup adm-form-full">
+          <label>Descripción</label>
+          <textarea name="description" placeholder="Descripción del producto (opcional)..."></textarea>
+        </div>
+        <div class="adm-fgroup adm-form-full">
+          <label>URL o Ruta de Imagen (opcional)</label>
+          <input type="text" name="image" placeholder="images/foto.png  ó  https://mi-sitio.com/imagen.jpg">
+        </div>
+      </div>
+      <div class="adm-form-actions">
+        <button type="submit"  class="btn-adm-primary">+ Añadir Producto</button>
+        <button type="reset"   class="btn-adm-secondary" onclick="resetAddPrice()">Limpiar</button>
+      </div>
+    </form>
+  </div>
+
+  <!-- ── Gestión de productos ── -->
+  <div class="adm-section-header" style="margin-top:1rem">
+    <h2 class="adm-section-title">Catálogo de <em>Productos</em></h2>
+    <div class="adm-toolbar">
+      <button class="btn-adm-export" onclick="exportJSON()">⬇ Exportar JSON</button>
+      <label class="btn-adm-export" style="cursor:pointer;display:inline-flex;align-items:center;gap:.3rem">
+        ⬆ Importar JSON
+        <input type="file" accept=".json" onchange="importJSON(event)" style="display:none">
+      </label>
+      <button class="btn-adm-danger" onclick="resetToDefaults()">↺ Restaurar Originales</button>
+    </div>
+  </div>
+
+  <!-- Filtros -->
+  <div class="filters" style="margin-bottom:1.4rem">
+    <button class="ftab on" onclick="filtrarAdmin(this,'todos')">Todos</button>
+    <button class="ftab"    onclick="filtrarAdmin(this,'guitarra')">Guitarras</button>
+    <button class="ftab"    onclick="filtrarAdmin(this,'bateria')">Baterías</button>
+    <button class="ftab"    onclick="filtrarAdmin(this,'teclado')">Pianos/Teclados</button>
+    <button class="ftab"    onclick="filtrarAdmin(this,'viento')">Vientos</button>
+    <button class="ftab"    onclick="filtrarAdmin(this,'sonido')">Sonido/Consolas</button>
+    <button class="ftab"    onclick="filtrarAdmin(this,'accesorios')">Accesorios</button>
+  </div>
+
+  <!-- Lista -->
+  <div class="admin-prod-list" id="adminProductList"></div>
+
+  <!-- Info de despliegue -->
+  <div class="adm-info-box">
+    <p>
+      <strong>¿Cómo publicar los cambios?</strong>
+      Después de editar el catálogo, haz clic en <strong>⬇ Exportar JSON</strong> para descargar el archivo
+      <code>products.json</code> actualizado. Luego reemplaza ese archivo en el servidor de tu sitio web
+      para que todos los clientes vean los cambios.
+      Los cambios que haces aquí se guardan en este navegador para que puedas seguir editando.
+    </p>
+  </div>
+
+</main>
+
+<!-- ══════ MODAL EDICIÓN ══════ -->
+<div id="editModal" class="modal-overlay" onclick="closeModalOutside(event)">
+  <div class="modal-card">
+    <div class="modal-title">Editar <em>Producto</em></div>
+    <form id="editForm" onsubmit="handleEdit(event)">
+      <div class="adm-form-grid">
+        <div class="adm-fgroup">
+          <label>Nombre del Producto *</label>
+          <input type="text" id="editName" required>
+        </div>
+        <div class="adm-fgroup">
+          <label>Categoría *</label>
+          <select id="editCategory">
+            <option value="guitarra">Guitarras</option>
+            <option value="bateria">Baterías</option>
+            <option value="teclado">Pianos / Teclados</option>
+            <option value="viento">Vientos</option>
+            <option value="sonido">Sonido / Consolas</option>
+            <option value="accesorios">Accesorios</option>
+          </select>
+        </div>
+        <div class="adm-fgroup">
+          <label>Precio en S/ (0 = "Consultar")</label>
+          <input type="number" id="editPrice" min="0" step="0.01">
+        </div>
+        <div class="adm-fgroup">
+          <label>Etiqueta</label>
+          <select id="editTag">
+            <option value="">Sin etiqueta</option>
+            <option value="Popular">Popular</option>
+            <option value="Nuevo">Nuevo</option>
+          </select>
+        </div>
+        <div class="adm-fgroup adm-form-full">
+          <label>Descripción</label>
+          <textarea id="editDescription" rows="3"></textarea>
+        </div>
+        <div class="adm-fgroup adm-form-full">
+          <label>URL o Ruta de Imagen</label>
+          <input type="text" id="editImage" placeholder="images/foto.png  ó  https://...">
+        </div>
+      </div>
+      <div class="adm-form-actions" style="margin-top:.5rem">
+        <button type="submit"  class="btn-adm-primary">Guardar Cambios</button>
+        <button type="button"  class="btn-adm-secondary" onclick="closeModal()">Cancelar</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<script>
+/* ══════════════════════════════════════════
+   Admin — Casa Musical Talentos
+   Contraseña por defecto: Talentos2025
+   (cambiarla en la constante ADMIN_PASSWORD)
+══════════════════════════════════════════ */
+
+const ADMIN_PASSWORD = 'Talentos2025';
+const STORAGE_KEY    = 'talentos_products_v2';
+
+let products      = [];
+let editingIndex  = -1;
+let currentFilter = 'todos';
+
+const CAT_NAMES = {
+  guitarra:   'Guitarra',
+  bateria:    'Batería',
+  teclado:    'Piano/Teclado',
+  viento:     'Viento',
+  sonido:     'Sonido',
+  accesorios: 'Accesorios'
+};
+
+/* ── Autenticación ── */
+function checkAuth() {
+  return sessionStorage.getItem('talentos_admin') === '1';
+}
+
+function handleLogin(e) {
+  e.preventDefault();
+  const pwd = document.getElementById('passwordInput').value;
+  if (pwd === ADMIN_PASSWORD) {
+    sessionStorage.setItem('talentos_admin', '1');
+    showAdmin();
+  } else {
+    document.getElementById('loginError').classList.remove('adm-hidden');
+    document.getElementById('passwordInput').value = '';
+    document.getElementById('passwordInput').focus();
+  }
+}
+
+function logout() {
+  if (!confirm('¿Cerrar sesión del panel admin?')) return;
+  sessionStorage.removeItem('talentos_admin');
+  location.reload();
+}
+
+function showAdmin() {
+  document.getElementById('loginOverlay').classList.add('adm-hidden');
+  document.getElementById('adminNav').classList.remove('adm-hidden');
+  document.getElementById('statsBar').classList.remove('adm-hidden');
+  document.getElementById('adminMain').classList.remove('adm-hidden');
+  loadProducts();
+}
+
+/* ── Datos ── */
+async function loadProducts() {
+  const stored = localStorage.getItem(STORAGE_KEY);
+  if (stored) {
+    products = JSON.parse(stored);
+    renderAll();
+    return;
+  }
+  try {
+    const res = await fetch('products.json');
+    products = await res.json();
+    saveProducts();
+    renderAll();
+  } catch {
+    toast('Error al cargar products.json. Asegúrate de usar un servidor web.', 'err');
+  }
+}
+
+function saveProducts() {
+  localStorage.setItem(STORAGE_KEY, JSON.stringify(products));
+}
+
+/* ── Render ── */
+function renderAll() {
+  renderStats();
+  renderList(currentFilter);
+}
+
+function renderStats() {
+  const counts = {};
+  products.forEach(p => { counts[p.category] = (counts[p.category] || 0) + 1; });
+  let html = `<div class="stat-item"><strong>${products.length}</strong> Total productos</div>`;
+  for (const [cat, label] of Object.entries(CAT_NAMES)) {
+    if (counts[cat]) {
+      html += `<div class="stat-item"><strong>${counts[cat]}</strong> ${label}</div>`;
+    }
+  }
+  document.getElementById('statsBar').innerHTML = html;
+}
+
+function renderList(filter = 'todos') {
+  const list = document.getElementById('adminProductList');
+  const items = filter === 'todos' ? products : products.filter(p => p.category === filter);
+
+  if (items.length === 0) {
+    list.innerHTML = '<div class="adm-empty">No hay productos en esta categoría.</div>';
+    return;
+  }
+
+  list.innerHTML = items.map(p => {
+    const realIdx   = products.indexOf(p);
+    const hasPrice  = p.price && Number(p.price) > 0;
+    const priceText = hasPrice ? `S/ ${Number(p.price).toLocaleString('es-PE')}` : 'Consultar precio';
+    const tagClass  = p.tag && p.tag.toLowerCase() === 'nuevo' ? ' new' : '';
+    const tagHtml   = p.tag ? `<span class="adm-meta-tag${tagClass}">${p.tag}</span>` : '';
+    const thumbHtml = p.image
+      ? `<img src="${p.image}" alt="${p.name}" onerror="this.parentElement.textContent='🎸'">`
+      : '🎸';
+
+    return `
+      <div class="adm-prod-row">
+        <div class="adm-prod-thumb">${thumbHtml}</div>
+        <div class="adm-prod-info">
+          <div class="adm-prod-name">${p.name}</div>
+          <div class="adm-prod-meta">
+            <span class="adm-meta-cat">${CAT_NAMES[p.category] || p.category}</span>
+            <span class="adm-meta-price">${priceText}</span>
+            ${tagHtml}
+          </div>
+        </div>
+        <div class="adm-prod-actions">
+          <button class="btn-edit-prod" onclick="openEdit(${realIdx})">Editar</button>
+          <button class="btn-del-prod"  onclick="deleteProduct(${realIdx})">Eliminar</button>
+        </div>
+      </div>
+    `;
+  }).join('');
+}
+
+/* ── CRUD ── */
+function handleAdd(e) {
+  e.preventDefault();
+  const fd  = new FormData(e.target);
+  const tag = fd.get('tag');
+  const product = {
+    name:        fd.get('name').trim(),
+    category:    fd.get('category'),
+    price:       Number(fd.get('price')) || 0,
+    description: fd.get('description').trim(),
+    image:       fd.get('image').trim(),
+  };
+  if (tag) product.tag = tag;
+  products.push(product);
+  saveProducts();
+  renderAll();
+  e.target.reset();
+  document.querySelector('#addForm [name=price]').value = '0';
+  toast('Producto añadido correctamente', 'ok');
+}
+
+function openEdit(idx) {
+  editingIndex = idx;
+  const p = products[idx];
+  document.getElementById('editName').value        = p.name        || '';
+  document.getElementById('editCategory').value    = p.category    || 'guitarra';
+  document.getElementById('editPrice').value       = p.price       || 0;
+  document.getElementById('editDescription').value = p.description || '';
+  document.getElementById('editImage').value       = p.image       || '';
+  document.getElementById('editTag').value         = p.tag         || '';
+  document.getElementById('editModal').classList.add('open');
+  document.getElementById('editName').focus();
+}
+
+function handleEdit(e) {
+  e.preventDefault();
+  if (editingIndex < 0) return;
+  const tag = document.getElementById('editTag').value;
+  const updated = {
+    name:        document.getElementById('editName').value.trim(),
+    category:    document.getElementById('editCategory').value,
+    price:       Number(document.getElementById('editPrice').value) || 0,
+    description: document.getElementById('editDescription').value.trim(),
+    image:       document.getElementById('editImage').value.trim(),
+  };
+  if (tag) updated.tag = tag;
+  products[editingIndex] = updated;
+  saveProducts();
+  closeModal();
+  renderAll();
+  toast('Producto actualizado', 'ok');
+}
+
+function deleteProduct(idx) {
+  const name = products[idx].name;
+  if (!confirm(`¿Eliminar "${name}"?\n\nEsta acción no se puede deshacer.`)) return;
+  products.splice(idx, 1);
+  saveProducts();
+  renderAll();
+  toast('Producto eliminado', 'ok');
+}
+
+/* ── Modal ── */
+function closeModal() {
+  document.getElementById('editModal').classList.remove('open');
+  editingIndex = -1;
+}
+
+function closeModalOutside(e) {
+  if (e.target === document.getElementById('editModal')) closeModal();
+}
+
+/* ── Filtros ── */
+function filtrarAdmin(btn, cat) {
+  currentFilter = cat;
+  document.querySelectorAll('.ftab').forEach(t => t.classList.remove('on'));
+  btn.classList.add('on');
+  renderList(cat);
+}
+
+/* ── Toggle formulario ── */
+function toggleAddForm() {
+  const section = document.getElementById('addFormSection');
+  const btn     = document.getElementById('btnToggleAdd');
+  const hidden  = section.classList.toggle('adm-hidden');
+  btn.textContent = hidden ? '+ Mostrar formulario' : '− Ocultar formulario';
+}
+
+/* ── Reset precio al limpiar form ── */
+function resetAddPrice() {
+  setTimeout(() => {
+    document.querySelector('#addForm [name=price]').value = '0';
+  }, 0);
+}
+
+/* ── Exportar / Importar ── */
+function exportJSON() {
+  const json = JSON.stringify(products, null, 2);
+  const blob = new Blob([json], { type: 'application/json' });
+  const url  = URL.createObjectURL(blob);
+  const a    = Object.assign(document.createElement('a'), { href: url, download: 'products.json' });
+  a.click();
+  URL.revokeObjectURL(url);
+  toast('products.json descargado. Reemplázalo en tu servidor para publicar cambios.', 'ok');
+}
+
+function importJSON(e) {
+  const file = e.target.files[0];
+  if (!file) return;
+  const reader = new FileReader();
+  reader.onload = ev => {
+    try {
+      const imported = JSON.parse(ev.target.result);
+      if (!Array.isArray(imported)) throw new Error('no es array');
+      if (!confirm(`¿Importar ${imported.length} productos? Esto reemplazará el catálogo actual.`)) return;
+      products = imported;
+      saveProducts();
+      renderAll();
+      toast(`${imported.length} productos importados correctamente`, 'ok');
+    } catch {
+      toast('Error: el archivo JSON no tiene el formato correcto.', 'err');
+    }
+  };
+  reader.readAsText(file);
+  e.target.value = '';
+}
+
+async function resetToDefaults() {
+  if (!confirm('¿Restaurar el catálogo al estado original del archivo products.json?\n\nSe perderán todos los cambios realizados en este panel.')) return;
+  localStorage.removeItem(STORAGE_KEY);
+  try {
+    const res = await fetch('products.json');
+    products  = await res.json();
+    saveProducts();
+    renderAll();
+    toast('Catálogo restaurado al estado original', 'ok');
+  } catch {
+    toast('Error al cargar products.json', 'err');
+  }
+}
+
+/* ── Toast ── */
+let toastTimer;
+function toast(msg, type = 'ok') {
+  const el = document.getElementById('adm-toast');
+  el.textContent = msg;
+  el.className   = `adm-toast ${type} show`;
+  clearTimeout(toastTimer);
+  toastTimer = setTimeout(() => el.classList.remove('show'), 4000);
+}
+
+/* ── Inicializar ── */
+if (checkAuth()) showAdmin();
+
+/* Acceso rápido con Enter en el campo password */
+document.getElementById('passwordInput').addEventListener('keydown', e => {
+  if (e.key === 'Enter') {
+    e.preventDefault();
+    document.querySelector('.btn-login').click();
+  }
+});
+</script>
+</body>
+</html>

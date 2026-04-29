@@ -1,202 +1,202 @@
 [
   {
-    "name": "Guitarra Acustica  (BARRT)",
+    "name": "Guitarra Acustica (BARRT)",
     "description": "",
     "image": "images/guitarra-acustica-barrt.png",
     "category": "guitarra",
-    "tag": "Popular"
+    "tag": "Popular",
+    "price": 0
   },
-  
   {
-    "name": "Guitarra Acustica  (VOZZEX)",
+    "name": "Guitarra Acustica (VOZZEX)",
     "description": "",
     "image": "images/guitarra-acustica-vozzex.png",
     "category": "guitarra",
-    "tag": "Popular"
+    "tag": "Popular",
+    "price": 0
   },
-
   {
-    "name": "Guitarra Acustica  (FREEMAN)",
+    "name": "Guitarra Acustica (FREEMAN)",
     "description": "",
     "image": "images/guitarra-acustica-freeman.png",
     "category": "guitarra",
-    "tag": "Popular"
+    "tag": "Popular",
+    "price": 0
   },
   {
-    "name": "Guitarra Acustica  (ORPHEE)",
+    "name": "Guitarra Acustica (ORPHEE)",
     "description": "",
     "image": "images/guitarra-acustica-orphee.png",
     "category": "guitarra",
-    "tag": "Popular"
+    "tag": "Popular",
+    "price": 0
   },
   {
-    "name": "Guitarra Acustica  (CALIFORNIA)",
+    "name": "Guitarra Acustica (CALIFORNIA)",
     "description": "",
     "image": "images/guitarra-acustica-california.png",
     "category": "guitarra",
-    "tag": "Popular"
+    "tag": "Popular",
+    "price": 0
   },
   {
-    "name": "Guitarra Acustica  (STRING)",
+    "name": "Guitarra Acustica (STRING)",
     "description": "",
     "image": "images/guitarra-acustica-string.png",
     "category": "guitarra",
-    "tag": "Popular"
+    "tag": "Popular",
+    "price": 0
   },
-  
   {
-    "name": "Guitarra Acustica  Cuerdas Metalicas (FREEMAN)",
+    "name": "Guitarra Acustica Cuerdas Metalicas (FREEMAN)",
     "description": "",
     "image": "images/guitarra-acustica-cuerdas-metalicas-freeman.png",
     "category": "guitarra",
-    "tag": "Popular"
+    "tag": "Popular",
+    "price": 0
   },
-
   {
-    "name": "Guitarra Acustica  Cuerdas Metalicas (BARRT MINI JUMBO)",
+    "name": "Guitarra Acustica Cuerdas Metalicas (BARRT MINI JUMBO)",
     "description": "",
     "image": "images/guitarra-acustica-cuerdas-metalicas-barrt-mini-jumbo.png",
     "category": "guitarra",
-    "tag": "Popular"
+    "tag": "Popular",
+    "price": 0
   },
-
   {
-    "name": "Guitarra Acustica  Cuerdas Metalicas (FREEMAN JUMBO)",
+    "name": "Guitarra Acustica Cuerdas Metalicas (FREEMAN JUMBO)",
     "description": "",
     "image": "images/guitarra-acustica-cuerdas-metalicas-freeman-jumbo.png",
     "category": "guitarra",
-    "tag": "Popular"
+    "tag": "Popular",
+    "price": 0
   },
-
   {
     "name": "Guitarra Electrica (VOZZEX)",
     "description": "",
     "image": "images/guitarra-electrica-vozzex.png",
     "category": "guitarra",
-    "tag": "Popular"
+    "tag": "Popular",
+    "price": 0
   },
-
   {
     "name": "Guitarra Electrica (BARRT)",
     "description": "",
     "image": "images/guitarra-electrica-barrt.png",
     "category": "guitarra",
-    "tag": "Popular"
+    "tag": "Popular",
+    "price": 0
   },
-
   {
     "name": "Guitarra Electrica (FREEMAN)",
     "description": "",
-    "image": "images/guitarra-electrica-freeman",
+    "image": "",
     "category": "guitarra",
-    "tag": "Popular"
+    "tag": "Popular",
+    "price": 0
   },
-
   {
     "name": "Guitarra Electrica (IBANEZ GRX40)",
     "description": "",
-    "image": "images/guitarra-electrica-ibanez-grx40",
+    "image": "",
     "category": "guitarra",
-    "tag": "Popular"
+    "tag": "Popular",
+    "price": 0
   },
-
   {
     "name": "Teclado LKS PA-600",
     "description": "",
     "image": "",
     "category": "teclado",
-    "tag": "Nuevo"
+    "tag": "Nuevo",
+    "price": 0
   },
-
   {
     "name": "Teclado LKS PA-30",
     "description": "",
     "image": "",
     "category": "teclado",
-    "tag": "Nuevo"
+    "tag": "Nuevo",
+    "price": 0
   },
-
   {
-    "name": "Teclado LKS PA-10",    
+    "name": "Teclado LKS PA-10",
     "description": "",
-    "image": "https://via.placeholder.com/300x200?text=Teclado+Digital+61+Teclas",
+    "image": "",
     "category": "teclado",
-    "tag": "Nuevo"
+    "tag": "Nuevo",
+    "price": 0
   },
-
   {
     "name": "Saxofón Alto",
     "description": "Saxofón alto laqueado en dorado, incluye estuche y boquilla.",
-    "image": "https://via.placeholder.com/300x200?text=Saxofon+Alto",
-    "category": "viento"
+    "image": "",
+    "category": "viento",
+    "price": 0
   },
   {
     "name": "Trompeta Bb",
     "description": "Trompeta en si bemol laqueada, con estuche rígido.",
-    "image": "https://via.placeholder.com/300x200?text=Trompeta+Bb",
-    "category": "viento"
+    "image": "",
+    "category": "viento",
+    "price": 0
   },
   {
     "name": "Parlante Amplificado 15\"",
     "description": "700W RMS, Bluetooth, USB, entrada XLR y RCA. Con trípode.",
-    "image": "https://via.placeholder.com/300x200?text=Parlante+Amplificado+15",
+    "image": "",
     "category": "sonido",
-    "tag": "Popular"
+    "tag": "Popular",
+    "price": 0
   },
   {
     "name": "Consola 16 Canales",
     "description": "Mesa de mezclas analógica 16Ch con efectos, USB y phantom.",
-    "image": "https://via.placeholder.com/300x200?text=Consola+16+Canales",
+    "image": "",
     "category": "sonido",
-    "tag": "Nuevo"
+    "tag": "Nuevo",
+    "price": 0
   },
-
   {
     "name": "Pack Cuerdas para Guitarra (ROMEO)",
     "description": "",
-    "image": "https://via.placeholder.com/300x200?text=Cuerdas+para+Guitarra",
-    "category": "accesorios"
+    "image": "",
+    "category": "accesorios",
+    "price": 0
   },
-
-    {
+  {
     "name": "Pack Cuerdas para Guitarra (ALICE)",
     "description": "",
-    "image": "https://via.placeholder.com/300x200?text=Cuerdas+para+Guitarra",
-    "category": "accesorios"
+    "image": "",
+    "category": "accesorios",
+    "price": 0
   },
-
-    {
+  {
     "name": "Pack Cuerdas para Guitarra (ORPHEE)",
     "description": "",
-    "image": "https://via.placeholder.com/300x200?text=Cuerdas+para+Guitarra",
-    "category": "accesorios"
+    "image": "",
+    "category": "accesorios",
+    "price": 0
   },
-
-    {
+  {
     "name": "Pack Cuerdas para Guitarra (GK O TUCANA)",
     "description": "",
-    "image": "https://via.placeholder.com/300x200?text=Cuerdas+para+Guitarra",
-    "category": "accesorios"
+    "image": "",
+    "category": "accesorios",
+    "price": 0
   },
-
-    {
+  {
     "name": "Pack Cuerdas para Guitarra (D'ADDARIO)",
     "description": "",
-    "image": "https://via.placeholder.com/300x200?text=Cuerdas+para+Guitarra",
-    "category": "accesorios"
+    "image": "",
+    "category": "accesorios",
+    "price": 0
   },
-
-    {
+  {
     "name": "Pack Cuerdas para Guitarra (D'ADDARIO PRO)",
     "description": "",
-    "image": "https://via.placeholder.com/300x200?text=Cuerdas+para+Guitarra",
-    "category": "accesorios"
+    "image": "",
+    "category": "accesorios",
+    "price": 0
   }
-
-
-
-
-
-
-
 ]

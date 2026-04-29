@@ -554,3 +554,34 @@ footer {
   .footer-grid       { grid-template-columns: 1fr; }
   .hero-info-strip   { gap: 1.5rem; }
 }
+
+/* ══════════════════════════════════════════
+   PRECIO EN TARJETA DE PRODUCTO
+══════════════════════════════════════════ */
+.prod-price-consultar {
+  font-size: .82rem;
+  color: var(--texto-dim);
+  font-style: italic;
+  letter-spacing: .03em;
+}
+
+/* ══════════════════════════════════════════
+   PLACEHOLDER CUANDO NO HAY IMAGEN
+══════════════════════════════════════════ */
+.prod-img-fallback {
+  width: 100%; height: 100%;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 3rem; color: var(--oro);
+  opacity: .35;
+}
+
+/* ══════════════════════════════════════════
+   ENLACE ADMIN EN FOOTER (sutil)
+══════════════════════════════════════════ */
+.admin-footer-link {
+  font-size: .72rem; color: var(--texto-dim);
+  opacity: .25; text-decoration: none;
+  transition: opacity .3s;
+  letter-spacing: .06em;
+}
+.admin-footer-link:hover { opacity: .65; }
