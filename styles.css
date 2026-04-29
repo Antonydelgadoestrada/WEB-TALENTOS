@@ -286,13 +286,19 @@ nav {
 }
 
 .prod-img {
-  height: 190px; background: var(--negro4);
+  height: 210px; background: var(--negro4);
   display: flex; align-items: center; justify-content: center;
   position: relative; transition: background .4s;
+  overflow: hidden;
 }
 .prod-img img {
-  width: 100%; height: 100%; object-fit: cover; border-radius: 4px 4px 0 0;
+  width: 100%; height: 100%;
+  object-fit: contain;   /* muestra el producto completo sin recortar */
+  padding: 1rem;         /* respiro alrededor del producto */
+  border-radius: 4px 4px 0 0;
+  transition: transform .4s ease;
 }
+.prod-card:hover .prod-img img { transform: scale(1.04); }
 .prod-card:hover .prod-img { background: linear-gradient(135deg, #1a1200, #1a1a1a); }
 
 .prod-tag {
