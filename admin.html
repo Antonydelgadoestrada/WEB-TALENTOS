@@ -29,14 +29,16 @@
 }
 .login-title em { font-style: italic; color: var(--oro); }
 .login-sub { font-size: .82rem; color: var(--texto-mid); margin-bottom: 2rem; }
+.login-fields { text-align: left; margin-bottom: 1rem; }
+.login-card input[type=email],
 .login-card input[type=password] {
   width: 100%; padding: .9rem 1rem;
   background: var(--negro4); border: 1px solid rgba(200,168,75,.2);
-  color: var(--texto); font-family: 'Outfit', sans-serif; font-size: .95rem;
-  border-radius: 2px; outline: none; margin-bottom: 1rem;
+  color: var(--texto); font-family: 'Outfit', sans-serif; font-size: .9rem;
+  border-radius: 2px; outline: none; margin-bottom: .8rem;
   transition: border-color .3s;
 }
-.login-card input[type=password]:focus { border-color: var(--oro); }
+.login-card input:focus { border-color: var(--oro); }
 .btn-login {
   width: 100%; padding: .95rem;
   background: var(--oro); color: var(--negro);
@@ -44,7 +46,8 @@
   border: none; border-radius: 2px; cursor: pointer; font-family: 'Outfit', sans-serif;
   transition: all .3s;
 }
-.btn-login:hover { background: var(--oro-claro); }
+.btn-login:hover:not(:disabled) { background: var(--oro-claro); }
+.btn-login:disabled { opacity: .6; cursor: not-allowed; }
 .login-error { color: #e74c3c; font-size: .82rem; margin-top: .8rem; }
 
 /* ── Admin nav ── */
@@ -53,15 +56,15 @@
   background: var(--oro); color: var(--negro);
   padding: .2rem .6rem; border-radius: 2px; font-weight: 700;
 }
-.btn-nav-site {
+.btn-nav-link {
   padding: .45rem 1rem;
   background: transparent; color: var(--texto-mid);
   border: 1px solid rgba(242,236,216,.12); border-radius: 2px;
   font-size: .78rem; cursor: pointer; font-family: 'Outfit', sans-serif;
-  text-decoration: none; display: flex; align-items: center;
+  text-decoration: none; display: inline-flex; align-items: center;
   transition: all .3s;
 }
-.btn-nav-site:hover { border-color: var(--oro); color: var(--oro); }
+.btn-nav-link:hover { border-color: var(--oro); color: var(--oro); }
 .btn-logout {
   padding: .45rem 1rem;
   background: transparent; color: var(--texto-mid);
@@ -80,7 +83,7 @@
   margin-top: 65px;
 }
 .stat-item { display: flex; align-items: center; gap: .45rem; font-size: .8rem; color: var(--texto-mid); }
-.stat-item strong { color: var(--oro); font-size: 1.05rem; font-family: 'Cormorant Garamond', serif; font-weight: 700; }
+.stat-item strong { color: var(--oro); font-size: 1.05rem; font-family: 'Cormorant Garamond', serif; }
 
 /* ── Layout principal ── */
 #adminMain { padding: 2.5rem 5% 6rem; }
@@ -104,7 +107,8 @@
   border: none; border-radius: 2px; cursor: pointer;
   font-family: 'Outfit', sans-serif; transition: all .3s;
 }
-.btn-adm-primary:hover { background: var(--oro-claro); transform: translateY(-1px); }
+.btn-adm-primary:hover:not(:disabled) { background: var(--oro-claro); transform: translateY(-1px); }
+.btn-adm-primary:disabled { opacity: .6; cursor: not-allowed; }
 
 .btn-adm-secondary {
   padding: .8rem 1.4rem;
@@ -171,9 +175,7 @@
 .adm-form-actions { display: flex; gap: .8rem; flex-wrap: wrap; }
 
 /* ── Toolbar ── */
-.adm-toolbar {
-  display: flex; gap: .6rem; flex-wrap: wrap; align-items: center;
-}
+.adm-toolbar { display: flex; gap: .6rem; flex-wrap: wrap; align-items: center; }
 
 /* ── Lista de productos ── */
 .admin-prod-list { display: flex; flex-direction: column; gap: .55rem; }
@@ -195,22 +197,14 @@
 .adm-prod-thumb img { width: 100%; height: 100%; object-fit: cover; }
 
 .adm-prod-info { flex: 1; min-width: 0; }
-
 .adm-prod-name {
   font-family: 'Cormorant Garamond', serif;
   font-size: 1.05rem; font-weight: 600; margin-bottom: .25rem;
   white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
 }
-.adm-prod-meta {
-  display: flex; gap: .8rem; align-items: center; flex-wrap: wrap;
-}
-.adm-meta-cat {
-  font-size: .68rem; letter-spacing: .1em; text-transform: uppercase; color: var(--oro);
-}
-.adm-meta-price {
-  font-size: .85rem; color: var(--texto-mid);
-  font-family: 'Cormorant Garamond', serif; font-weight: 600;
-}
+.adm-prod-meta { display: flex; gap: .8rem; align-items: center; flex-wrap: wrap; }
+.adm-meta-cat  { font-size: .68rem; letter-spacing: .1em; text-transform: uppercase; color: var(--oro); }
+.adm-meta-price { font-size: .85rem; color: var(--texto-mid); font-family: 'Cormorant Garamond', serif; font-weight: 600; }
 .adm-meta-tag {
   font-size: .62rem; padding: .15rem .5rem;
   background: var(--oro); color: var(--negro);
@@ -219,7 +213,6 @@
 .adm-meta-tag.new { background: #2ecc71; color: #fff; }
 
 .adm-prod-actions { display: flex; gap: .5rem; flex-shrink: 0; }
-
 .btn-edit-prod {
   padding: .4rem .9rem;
   border: 1px solid rgba(200,168,75,.3); background: transparent;
@@ -227,7 +220,6 @@
   cursor: pointer; font-family: 'Outfit', sans-serif; transition: all .3s;
 }
 .btn-edit-prod:hover { background: rgba(200,168,75,.1); }
-
 .btn-del-prod {
   padding: .4rem .9rem;
   border: 1px solid rgba(231,76,60,.25); background: transparent;
@@ -241,6 +233,20 @@
   color: var(--texto-dim); font-size: .9rem; font-style: italic;
   border: 1px dashed rgba(242,236,216,.06); border-radius: 4px;
 }
+
+/* ── Spinner de carga ── */
+.adm-loading {
+  display: flex; align-items: center; justify-content: center;
+  gap: .8rem; padding: 3rem;
+  color: var(--texto-dim); font-size: .9rem;
+}
+.adm-spinner {
+  width: 20px; height: 20px; border-radius: 50%;
+  border: 2px solid rgba(200,168,75,.2);
+  border-top-color: var(--oro);
+  animation: spin2 .8s linear infinite;
+}
+@keyframes spin2 { to { transform: rotate(360deg); } }
 
 /* ── Modal edición ── */
 .modal-overlay {
@@ -262,7 +268,7 @@
 }
 .modal-title em { font-style: italic; color: var(--oro); }
 
-/* ── Notificación toast ── */
+/* ── Toast ── */
 .adm-toast {
   position: fixed; top: 5rem; right: 2rem; z-index: 2000;
   padding: .8rem 1.4rem;
@@ -270,11 +276,11 @@
   border-radius: 3px; font-size: .85rem; color: var(--texto);
   box-shadow: 0 8px 30px rgba(0,0,0,.5);
   transform: translateX(130%); transition: transform .4s ease;
-  max-width: 320px;
+  max-width: 340px;
 }
 .adm-toast.show { transform: translateX(0); }
-.adm-toast.ok    { border-color: rgba(46,204,113,.5); }
-.adm-toast.err   { border-color: rgba(231,76,60,.5); }
+.adm-toast.ok  { border-color: rgba(46,204,113,.5); }
+.adm-toast.err { border-color: rgba(231,76,60,.5); }
 
 /* ── Info box ── */
 .adm-info-box {
@@ -284,25 +290,22 @@
 }
 .adm-info-box p { font-size: .85rem; color: var(--texto-mid); line-height: 1.7; }
 .adm-info-box strong { color: var(--oro); }
-.adm-info-box code {
-  background: rgba(200,168,75,.1); padding: .1rem .4rem;
-  border-radius: 2px; font-family: monospace; font-size: .82rem;
-}
 
 /* ── Responsive ── */
 @media (max-width: 640px) {
-  .adm-form-grid      { grid-template-columns: 1fr; }
-  .admin-stats        { gap: 1rem; }
-  .adm-prod-row       { flex-wrap: wrap; }
-  .adm-prod-actions   { width: 100%; justify-content: flex-end; }
-  .adm-prod-name      { white-space: normal; }
-  #adminMain          { padding: 1.5rem 4% 4rem; }
+  .adm-form-grid    { grid-template-columns: 1fr; }
+  .admin-stats      { gap: 1rem; }
+  .adm-prod-row     { flex-wrap: wrap; }
+  .adm-prod-actions { width: 100%; justify-content: flex-end; }
+  .adm-prod-name    { white-space: normal; }
+  #adminMain        { padding: 1.5rem 4% 4rem; }
+  .modal-card       { padding: 1.8rem 1.4rem; }
 }
 </style>
 </head>
 <body>
 
-<!-- ── Notificación toast ── -->
+<!-- ── Toast ── -->
 <div id="adm-toast" class="adm-toast"></div>
 
 <!-- ══════ LOGIN OVERLAY ══════ -->
@@ -313,11 +316,12 @@
       <span class="logo-sub">Instrument Music · Sullana, Piura</span>
     </div>
     <div class="login-title">Panel <em>Admin</em></div>
-    <div class="login-sub">Ingresa la contraseña para gestionar el catálogo de productos</div>
-    <form onsubmit="handleLogin(event)">
-      <input type="password" id="passwordInput" placeholder="Contraseña" autocomplete="current-password">
-      <button type="submit" class="btn-login">Ingresar al Panel</button>
-      <div id="loginError" class="login-error adm-hidden">Contraseña incorrecta. Inténtalo de nuevo.</div>
+    <div class="login-sub">Ingresa con tu cuenta de administrador</div>
+    <form onsubmit="handleLogin(event)" class="login-fields">
+      <input type="email" id="emailInput" placeholder="Email del administrador" required autocomplete="email">
+      <input type="password" id="passwordInput" placeholder="Contraseña" required autocomplete="current-password">
+      <button type="submit" class="btn-login" id="btnLogin">Ingresar al Panel</button>
+      <div id="loginError" class="login-error adm-hidden"></div>
     </form>
   </div>
 </div>
@@ -330,8 +334,8 @@
   </div>
   <div style="display:flex;align-items:center;gap:.8rem;flex-wrap:wrap">
     <span class="admin-badge">Admin</span>
-    <a href="catalog.html" class="btn-nav-site" target="_blank">↗ Ver Catálogo</a>
-    <a href="index.html"   class="btn-nav-site">← Ir al Sitio</a>
+    <a href="catalog.html" class="btn-nav-link" target="_blank">↗ Ver Catálogo</a>
+    <a href="index.html"   class="btn-nav-link">← Ir al Sitio</a>
     <button class="btn-logout" onclick="logout()">Cerrar Sesión</button>
   </div>
 </nav>
@@ -367,7 +371,7 @@
           </select>
         </div>
         <div class="adm-fgroup">
-          <label>Precio en S/ (dejar en 0 para mostrar "Consultar")</label>
+          <label>Precio en S/ (0 = mostrar "Consultar precio")</label>
           <input type="number" name="price" placeholder="0" min="0" value="0" step="0.01">
         </div>
         <div class="adm-fgroup">
@@ -379,31 +383,27 @@
           </select>
         </div>
         <div class="adm-fgroup adm-form-full">
-          <label>Descripción</label>
-          <textarea name="description" placeholder="Descripción del producto (opcional)..."></textarea>
+          <label>Descripción (opcional)</label>
+          <textarea name="description" placeholder="Descripción del producto..."></textarea>
         </div>
         <div class="adm-fgroup adm-form-full">
           <label>URL o Ruta de Imagen (opcional)</label>
-          <input type="text" name="image" placeholder="images/foto.png  ó  https://mi-sitio.com/imagen.jpg">
+          <input type="text" name="image" placeholder="images/foto.png  ó  https://...">
         </div>
       </div>
       <div class="adm-form-actions">
-        <button type="submit"  class="btn-adm-primary">+ Añadir Producto</button>
-        <button type="reset"   class="btn-adm-secondary" onclick="resetAddPrice()">Limpiar</button>
+        <button type="submit"  class="btn-adm-primary" id="btnAdd">+ Añadir Producto</button>
+        <button type="reset"   class="btn-adm-secondary" onclick="resetPrice()">Limpiar</button>
       </div>
     </form>
   </div>
 
-  <!-- ── Gestión de productos ── -->
+  <!-- ── Gestión ── -->
   <div class="adm-section-header" style="margin-top:1rem">
     <h2 class="adm-section-title">Catálogo de <em>Productos</em></h2>
     <div class="adm-toolbar">
       <button class="btn-adm-export" onclick="exportJSON()">⬇ Exportar JSON</button>
-      <label class="btn-adm-export" style="cursor:pointer;display:inline-flex;align-items:center;gap:.3rem">
-        ⬆ Importar JSON
-        <input type="file" accept=".json" onchange="importJSON(event)" style="display:none">
-      </label>
-      <button class="btn-adm-danger" onclick="resetToDefaults()">↺ Restaurar Originales</button>
+      <button class="btn-adm-export" onclick="seedFromJSON()">⬆ Cargar productos iniciales</button>
     </div>
   </div>
 
@@ -418,20 +418,20 @@
     <button class="ftab"    onclick="filtrarAdmin(this,'accesorios')">Accesorios</button>
   </div>
 
-  <!-- Lista -->
-  <div class="admin-prod-list" id="adminProductList"></div>
-
-  <!-- Info de despliegue -->
-  <div class="adm-info-box">
-    <p>
-      <strong>¿Cómo publicar los cambios?</strong>
-      Después de editar el catálogo, haz clic en <strong>⬇ Exportar JSON</strong> para descargar el archivo
-      <code>products.json</code> actualizado. Luego reemplaza ese archivo en el servidor de tu sitio web
-      para que todos los clientes vean los cambios.
-      Los cambios que haces aquí se guardan en este navegador para que puedas seguir editando.
-    </p>
+  <div class="admin-prod-list" id="adminProductList">
+    <div class="adm-loading">
+      <div class="adm-spinner"></div> Cargando productos...
+    </div>
   </div>
 
+  <div class="adm-info-box" style="margin-top:2.5rem">
+    <p>
+      <strong>Los cambios son inmediatos.</strong>
+      Todo lo que edites aquí se guarda en Supabase y los clientes verán los cambios en segundos,
+      sin necesidad de tocar archivos ni hacer redeploy.
+      Usa <strong>⬆ Cargar productos iniciales</strong> la primera vez si la tabla está vacía.
+    </p>
+  </div>
 </main>
 
 <!-- ══════ MODAL EDICIÓN ══════ -->
@@ -441,7 +441,7 @@
     <form id="editForm" onsubmit="handleEdit(event)">
       <div class="adm-form-grid">
         <div class="adm-fgroup">
-          <label>Nombre del Producto *</label>
+          <label>Nombre *</label>
           <input type="text" id="editName" required>
         </div>
         <div class="adm-fgroup">
@@ -477,26 +477,22 @@
         </div>
       </div>
       <div class="adm-form-actions" style="margin-top:.5rem">
-        <button type="submit"  class="btn-adm-primary">Guardar Cambios</button>
+        <button type="submit"  class="btn-adm-primary" id="btnEdit">Guardar Cambios</button>
         <button type="button"  class="btn-adm-secondary" onclick="closeModal()">Cancelar</button>
       </div>
     </form>
   </div>
 </div>
 
+<!-- Supabase CDN + config -->
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="supabase-config.js"></script>
 <script>
 /* ══════════════════════════════════════════
-   Admin — Casa Musical Talentos
-   Contraseña por defecto: Talentos2025
-   (cambiarla en la constante ADMIN_PASSWORD)
+   Panel Admin — Casa Musical Talentos
+   Auth: Supabase (email + contraseña)
+   Acceso: Supabase → Authentication → Users
 ══════════════════════════════════════════ */
-
-const ADMIN_PASSWORD = 'Talentos2025';
-const STORAGE_KEY    = 'talentos_products_v2';
-
-let products      = [];
-let editingIndex  = -1;
-let currentFilter = 'todos';
 
 const CAT_NAMES = {
   guitarra:   'Guitarra',
@@ -507,28 +503,52 @@ const CAT_NAMES = {
   accesorios: 'Accesorios'
 };
 
-/* ── Autenticación ── */
-function checkAuth() {
-  return sessionStorage.getItem('talentos_admin') === '1';
+let sb          = null;
+let products    = [];
+let editingId   = null;
+let activeFilter = 'todos';
+
+/* ── Init Supabase ── */
+function initSB() {
+  if (!sb) sb = supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
+  return sb;
 }
 
-function handleLogin(e) {
+/* ══════════════════════════════════════════
+   AUTH
+══════════════════════════════════════════ */
+async function handleLogin(e) {
   e.preventDefault();
-  const pwd = document.getElementById('passwordInput').value;
-  if (pwd === ADMIN_PASSWORD) {
-    sessionStorage.setItem('talentos_admin', '1');
-    showAdmin();
+  const btn  = document.getElementById('btnLogin');
+  const errEl = document.getElementById('loginError');
+  const email = document.getElementById('emailInput').value.trim();
+  const pwd   = document.getElementById('passwordInput').value;
+
+  btn.disabled    = true;
+  btn.textContent = 'Verificando...';
+  errEl.classList.add('adm-hidden');
+
+  const { error } = await initSB().auth.signInWithPassword({ email, password: pwd });
+
+  if (error) {
+    errEl.textContent = 'Email o contraseña incorrectos.';
+    errEl.classList.remove('adm-hidden');
+    btn.disabled    = false;
+    btn.textContent = 'Ingresar al Panel';
   } else {
-    document.getElementById('loginError').classList.remove('adm-hidden');
-    document.getElementById('passwordInput').value = '';
-    document.getElementById('passwordInput').focus();
+    showAdmin();
   }
 }
 
-function logout() {
+async function logout() {
   if (!confirm('¿Cerrar sesión del panel admin?')) return;
-  sessionStorage.removeItem('talentos_admin');
+  await initSB().auth.signOut();
   location.reload();
+}
+
+async function checkSession() {
+  const { data: { session } } = await initSB().auth.getSession();
+  if (session) showAdmin();
 }
 
 function showAdmin() {
@@ -536,66 +556,60 @@ function showAdmin() {
   document.getElementById('adminNav').classList.remove('adm-hidden');
   document.getElementById('statsBar').classList.remove('adm-hidden');
   document.getElementById('adminMain').classList.remove('adm-hidden');
-  loadProducts();
+  loadAndRender();
 }
 
-/* ── Datos ── */
-async function loadProducts() {
-  const stored = localStorage.getItem(STORAGE_KEY);
-  if (stored) {
-    products = JSON.parse(stored);
-    renderAll();
+/* ══════════════════════════════════════════
+   DATOS — Supabase
+══════════════════════════════════════════ */
+async function loadAndRender() {
+  const list = document.getElementById('adminProductList');
+  list.innerHTML = '<div class="adm-loading"><div class="adm-spinner"></div> Cargando...</div>';
+
+  const { data, error } = await initSB()
+    .from('products')
+    .select('*')
+    .order('id', { ascending: true });
+
+  if (error) {
+    list.innerHTML = `<div class="adm-empty">Error al cargar: ${error.message}</div>`;
     return;
   }
-  try {
-    const res = await fetch('products.json');
-    products = await res.json();
-    saveProducts();
-    renderAll();
-  } catch {
-    toast('Error al cargar products.json. Asegúrate de usar un servidor web.', 'err');
-  }
-}
 
-function saveProducts() {
-  localStorage.setItem(STORAGE_KEY, JSON.stringify(products));
-}
-
-/* ── Render ── */
-function renderAll() {
+  products = data || [];
   renderStats();
-  renderList(currentFilter);
+  renderList(activeFilter);
 }
 
+/* ══════════════════════════════════════════
+   RENDER
+══════════════════════════════════════════ */
 function renderStats() {
   const counts = {};
   products.forEach(p => { counts[p.category] = (counts[p.category] || 0) + 1; });
   let html = `<div class="stat-item"><strong>${products.length}</strong> Total productos</div>`;
   for (const [cat, label] of Object.entries(CAT_NAMES)) {
-    if (counts[cat]) {
-      html += `<div class="stat-item"><strong>${counts[cat]}</strong> ${label}</div>`;
-    }
+    if (counts[cat]) html += `<div class="stat-item"><strong>${counts[cat]}</strong> ${label}</div>`;
   }
   document.getElementById('statsBar').innerHTML = html;
 }
 
 function renderList(filter = 'todos') {
-  const list = document.getElementById('adminProductList');
+  const list  = document.getElementById('adminProductList');
   const items = filter === 'todos' ? products : products.filter(p => p.category === filter);
 
-  if (items.length === 0) {
+  if (!items.length) {
     list.innerHTML = '<div class="adm-empty">No hay productos en esta categoría.</div>';
     return;
   }
 
   list.innerHTML = items.map(p => {
-    const realIdx   = products.indexOf(p);
     const hasPrice  = p.price && Number(p.price) > 0;
     const priceText = hasPrice ? `S/ ${Number(p.price).toLocaleString('es-PE')}` : 'Consultar precio';
     const tagClass  = p.tag && p.tag.toLowerCase() === 'nuevo' ? ' new' : '';
     const tagHtml   = p.tag ? `<span class="adm-meta-tag${tagClass}">${p.tag}</span>` : '';
     const thumbHtml = p.image
-      ? `<img src="${p.image}" alt="${p.name}" onerror="this.parentElement.textContent='🎸'">`
+      ? `<img src="${p.image}" alt="${p.name}" onerror="this.parentElement.innerHTML='🎸'">`
       : '🎸';
 
     return `
@@ -610,38 +624,51 @@ function renderList(filter = 'todos') {
           </div>
         </div>
         <div class="adm-prod-actions">
-          <button class="btn-edit-prod" onclick="openEdit(${realIdx})">Editar</button>
-          <button class="btn-del-prod"  onclick="deleteProduct(${realIdx})">Eliminar</button>
+          <button class="btn-edit-prod" onclick="openEdit(${p.id})">Editar</button>
+          <button class="btn-del-prod"  onclick="deleteProduct(${p.id})">Eliminar</button>
         </div>
       </div>
     `;
   }).join('');
 }
 
-/* ── CRUD ── */
-function handleAdd(e) {
+/* ══════════════════════════════════════════
+   CRUD
+══════════════════════════════════════════ */
+async function handleAdd(e) {
   e.preventDefault();
+  const btn = document.getElementById('btnAdd');
+  btn.disabled    = true;
+  btn.textContent = 'Guardando...';
+
   const fd  = new FormData(e.target);
-  const tag = fd.get('tag');
-  const product = {
+  const tag = fd.get('tag') || null;
+
+  const { error } = await initSB().from('products').insert([{
     name:        fd.get('name').trim(),
     category:    fd.get('category'),
     price:       Number(fd.get('price')) || 0,
     description: fd.get('description').trim(),
     image:       fd.get('image').trim(),
-  };
-  if (tag) product.tag = tag;
-  products.push(product);
-  saveProducts();
-  renderAll();
+    tag,
+  }]);
+
+  btn.disabled    = false;
+  btn.textContent = '+ Añadir Producto';
+
+  if (error) { toast('Error: ' + error.message, 'err'); return; }
+
   e.target.reset();
   document.querySelector('#addForm [name=price]').value = '0';
   toast('Producto añadido correctamente', 'ok');
+  await loadAndRender();
 }
 
-function openEdit(idx) {
-  editingIndex = idx;
-  const p = products[idx];
+function openEdit(id) {
+  editingId = id;
+  const p   = products.find(x => x.id === id);
+  if (!p) return;
+
   document.getElementById('editName').value        = p.name        || '';
   document.getElementById('editCategory').value    = p.category    || 'guitarra';
   document.getElementById('editPrice').value       = p.price       || 0;
@@ -652,114 +679,123 @@ function openEdit(idx) {
   document.getElementById('editName').focus();
 }
 
-function handleEdit(e) {
+async function handleEdit(e) {
   e.preventDefault();
-  if (editingIndex < 0) return;
-  const tag = document.getElementById('editTag').value;
-  const updated = {
-    name:        document.getElementById('editName').value.trim(),
-    category:    document.getElementById('editCategory').value,
-    price:       Number(document.getElementById('editPrice').value) || 0,
-    description: document.getElementById('editDescription').value.trim(),
-    image:       document.getElementById('editImage').value.trim(),
-  };
-  if (tag) updated.tag = tag;
-  products[editingIndex] = updated;
-  saveProducts();
+  if (editingId === null) return;
+
+  const btn = document.getElementById('btnEdit');
+  btn.disabled    = true;
+  btn.textContent = 'Guardando...';
+
+  const tag = document.getElementById('editTag').value || null;
+
+  const { error } = await initSB()
+    .from('products')
+    .update({
+      name:        document.getElementById('editName').value.trim(),
+      category:    document.getElementById('editCategory').value,
+      price:       Number(document.getElementById('editPrice').value) || 0,
+      description: document.getElementById('editDescription').value.trim(),
+      image:       document.getElementById('editImage').value.trim(),
+      tag,
+    })
+    .eq('id', editingId);
+
+  btn.disabled    = false;
+  btn.textContent = 'Guardar Cambios';
+
+  if (error) { toast('Error: ' + error.message, 'err'); return; }
   closeModal();
-  renderAll();
   toast('Producto actualizado', 'ok');
+  await loadAndRender();
 }
 
-function deleteProduct(idx) {
-  const name = products[idx].name;
-  if (!confirm(`¿Eliminar "${name}"?\n\nEsta acción no se puede deshacer.`)) return;
-  products.splice(idx, 1);
-  saveProducts();
-  renderAll();
+async function deleteProduct(id) {
+  const p = products.find(x => x.id === id);
+  if (!p || !confirm(`¿Eliminar "${p.name}"?\n\nEsta acción no se puede deshacer.`)) return;
+
+  const { error } = await initSB().from('products').delete().eq('id', id);
+  if (error) { toast('Error: ' + error.message, 'err'); return; }
   toast('Producto eliminado', 'ok');
+  await loadAndRender();
 }
 
-/* ── Modal ── */
+/* ══════════════════════════════════════════
+   MODAL
+══════════════════════════════════════════ */
 function closeModal() {
   document.getElementById('editModal').classList.remove('open');
-  editingIndex = -1;
+  editingId = null;
 }
-
 function closeModalOutside(e) {
   if (e.target === document.getElementById('editModal')) closeModal();
 }
 
-/* ── Filtros ── */
+/* ══════════════════════════════════════════
+   FILTROS
+══════════════════════════════════════════ */
 function filtrarAdmin(btn, cat) {
-  currentFilter = cat;
+  activeFilter = cat;
   document.querySelectorAll('.ftab').forEach(t => t.classList.remove('on'));
   btn.classList.add('on');
   renderList(cat);
 }
 
-/* ── Toggle formulario ── */
+/* ══════════════════════════════════════════
+   FORMULARIO
+══════════════════════════════════════════ */
 function toggleAddForm() {
-  const section = document.getElementById('addFormSection');
-  const btn     = document.getElementById('btnToggleAdd');
-  const hidden  = section.classList.toggle('adm-hidden');
-  btn.textContent = hidden ? '+ Mostrar formulario' : '− Ocultar formulario';
+  const s   = document.getElementById('addFormSection');
+  const btn = document.getElementById('btnToggleAdd');
+  btn.textContent = s.classList.toggle('adm-hidden') ? '+ Mostrar formulario' : '− Ocultar formulario';
+}
+function resetPrice() {
+  setTimeout(() => { document.querySelector('#addForm [name=price]').value = '0'; }, 0);
 }
 
-/* ── Reset precio al limpiar form ── */
-function resetAddPrice() {
-  setTimeout(() => {
-    document.querySelector('#addForm [name=price]').value = '0';
-  }, 0);
-}
-
-/* ── Exportar / Importar ── */
+/* ══════════════════════════════════════════
+   EXPORT / SEED
+══════════════════════════════════════════ */
 function exportJSON() {
-  const json = JSON.stringify(products, null, 2);
-  const blob = new Blob([json], { type: 'application/json' });
-  const url  = URL.createObjectURL(blob);
-  const a    = Object.assign(document.createElement('a'), { href: url, download: 'products.json' });
+  const clean = products.map(({ id, created_at, ...rest }) => rest);
+  const blob  = new Blob([JSON.stringify(clean, null, 2)], { type: 'application/json' });
+  const a     = Object.assign(document.createElement('a'), {
+    href: URL.createObjectURL(blob), download: 'products-backup.json'
+  });
   a.click();
-  URL.revokeObjectURL(url);
-  toast('products.json descargado. Reemplázalo en tu servidor para publicar cambios.', 'ok');
+  URL.revokeObjectURL(a.href);
+  toast('Backup descargado como products-backup.json', 'ok');
 }
 
-function importJSON(e) {
-  const file = e.target.files[0];
-  if (!file) return;
-  const reader = new FileReader();
-  reader.onload = ev => {
-    try {
-      const imported = JSON.parse(ev.target.result);
-      if (!Array.isArray(imported)) throw new Error('no es array');
-      if (!confirm(`¿Importar ${imported.length} productos? Esto reemplazará el catálogo actual.`)) return;
-      products = imported;
-      saveProducts();
-      renderAll();
-      toast(`${imported.length} productos importados correctamente`, 'ok');
-    } catch {
-      toast('Error: el archivo JSON no tiene el formato correcto.', 'err');
-    }
-  };
-  reader.readAsText(file);
-  e.target.value = '';
-}
+async function seedFromJSON() {
+  if (products.length > 0 && !confirm(`La tabla ya tiene ${products.length} productos.\n¿Deseas AÑADIR también los productos iniciales del archivo products.json?`)) return;
+  if (products.length === 0 && !confirm('¿Cargar los productos iniciales desde products.json?')) return;
 
-async function resetToDefaults() {
-  if (!confirm('¿Restaurar el catálogo al estado original del archivo products.json?\n\nSe perderán todos los cambios realizados en este panel.')) return;
-  localStorage.removeItem(STORAGE_KEY);
   try {
-    const res = await fetch('products.json');
-    products  = await res.json();
-    saveProducts();
-    renderAll();
-    toast('Catálogo restaurado al estado original', 'ok');
-  } catch {
-    toast('Error al cargar products.json', 'err');
+    const res  = await fetch('products.json');
+    const json = await res.json();
+    const rows = json.map((p, i) => ({
+      name:        p.name        || '',
+      category:    p.category    || 'guitarra',
+      price:       Number(p.price) || 0,
+      description: p.description || '',
+      image:       p.image       || '',
+      tag:         p.tag         || null,
+    }));
+
+    const { error } = await initSB().from('products').insert(rows);
+    if (error) throw error;
+
+    toast(`${rows.length} productos cargados en Supabase`, 'ok');
+    await loadAndRender();
+  } catch (err) {
+    toast('Error al cargar: ' + err.message, 'err');
   }
 }
 
-/* ── Toast ── */
+/* ══════════════════════════════════════════
+   TOAST
+══════════════════════════════════════════ */
 let toastTimer;
 function toast(msg, type = 'ok') {
   const el = document.getElementById('adm-toast');
@@ -769,16 +805,10 @@ function toast(msg, type = 'ok') {
   toastTimer = setTimeout(() => el.classList.remove('show'), 4000);
 }
 
-/* ── Inicializar ── */
-if (checkAuth()) showAdmin();
-
-/* Acceso rápido con Enter en el campo password */
-document.getElementById('passwordInput').addEventListener('keydown', e => {
-  if (e.key === 'Enter') {
-    e.preventDefault();
-    document.querySelector('.btn-login').click();
-  }
-});
+/* ══════════════════════════════════════════
+   INIT
+══════════════════════════════════════════ */
+checkSession();
 </script>
 </body>
 </html>
